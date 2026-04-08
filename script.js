@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // =============================================
     // 1. TYPEWRITER EFEKAT ZA HEADER
-    // =============================================
-    
+
     const nameElement = document.getElementById('typewriter-name');
     const titleElement = document.getElementById('typewriter-title');
     
@@ -38,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         typeWriterName();
     }
 
-    // =============================================
     // 2. FADE-IN NA SCROLL (Intersection Observer)
-    // =============================================
+
     
     const observerOptions = {
         threshold: 0.1,
@@ -56,14 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Selektuj sve elemente sa klasom 'appear'
+
     document.querySelectorAll('.appear').forEach(el => {
         observer.observe(el);
     });
 
-    // =============================================
+
     // 3. SLIDER ZA PROJEKTE
-    // =============================================
+
     
     const track = document.getElementById('sliderTrack');
     const slides = track ? Array.from(track.children) : [];
@@ -75,24 +72,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSlider() {
         if (!track) return;
         
-        // Pomjera cijelu traku ulijevo
+
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
         
-        // Sakrij/Prikaži tipku "Nazad"
         if (prevBtn) {
             prevBtn.style.display = currentIndex === 0 ? 'none' : 'flex';
         }
         
-        // Sakrij/Prikaži tipku "Naprijed"
+
         if (nextBtn) {
             nextBtn.style.display = currentIndex === slides.length - 1 ? 'none' : 'flex';
         }
     }
 
-    // Inicijalizacija slidera
+
     updateSlider();
 
-    // Klik na tipku "Naprijed"
+
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
             if (currentIndex < slides.length - 1) {
@@ -102,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Klik na tipku "Nazad"
+
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
             if (currentIndex > 0) {
@@ -112,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Swipe podrška za mobilne uređaje
+
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -142,9 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // =============================================
     // 4. NAVBAR FUNKCIONALNOST
-    // =============================================
+
     
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.querySelector('.nav-links');
@@ -165,10 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // =============================================
     // 5. SMOOTH SCROLL ZA ANCHOR LINKOVE
-    // =============================================
-    
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -187,17 +180,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // =============================================
+
     // 6. NAVBAR PROMJENA NA SCROLL
-    // =============================================
-    
+
     const navbar = document.querySelector('.navbar');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
 
-        // Dodaj shadow kad skrolaš
         if (navbar) {
             if (currentScroll > 50) {
                 navbar.classList.add('scrolled');
@@ -209,10 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     });
 
-    // =============================================
     // 7. AKTIVNA SEKCIJA U NAVBARU
-    // =============================================
-    
+
     const sections = document.querySelectorAll('section[id], footer[id]');
     const navItems = document.querySelectorAll('.nav-links a');
 
@@ -238,6 +227,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', setActiveNav);
-    setActiveNav(); // Pokreni jednom na početku
-
+    setActiveNav(); 
 });
