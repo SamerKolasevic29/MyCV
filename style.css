@@ -1,21 +1,27 @@
-/* RESET */
+/* =========================================
+   1. RESET I OSNOVNI STILOVI (BASE)
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* BASE */
 body {
     font-family: 'JetBrains Mono', monospace;
     line-height: 1.6;
     color: #333;
-    background-color: #031411;
     padding: 40px 20px;
     padding-top: 80px;
+    
+    /* Novi background */
+    background: radial-gradient(circle at top center, rgba(5, 74, 59, 0.783) 0%, #062520 60%);
+    background-attachment: fixed;
 }
 
-/* NAVBAR */
+/* =========================================
+   2. NAVIGACIJA (NAVBAR)
+   ========================================= */
 .navbar {
     position: fixed;
     top: 0;
@@ -26,7 +32,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px clamp(20px, 5vw, 60px);
-    background: rgba(3, 20, 17, 0.9);
+    background: rgba(3, 20, 17, 0.484);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -98,10 +104,13 @@ body {
     transform: scale(1.1);
 }
 
-/* HEADER */
+/* =========================================
+   3. HEADER (ZAGLAVLJE)
+   ========================================= */
 header {
     text-align: center;
     margin-bottom: clamp(30px, 6vw, 60px);
+    margin-top: clamp(40px, 6vw, 70px);
 }
 
 header h1 {
@@ -122,14 +131,12 @@ header p {
     color: #00EBB9;
 }
 
-@keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-}
-
-/* SEKCIJE - OPĆI STIL */
+/* =========================================
+   4. OPĆE SEKCIJE
+   ========================================= */
 section {
     max-width: 1200px;
+    scroll-margin-top: 150px;
     margin: 0 auto clamp(60px, 10vw, 120px) auto;
     padding: clamp(30px, 5vw, 50px) clamp(20px, 3vw, 30px);
     background: rgba(103, 103, 103, 0.2);
@@ -160,7 +167,9 @@ section {
     height: clamp(70px, 6vw, 90px);
 }
 
-/* O MENI - CONTENT CONTAINER */
+/* =========================================
+   5. O MENI
+   ========================================= */
 .contentContainer {
     display: flex;
     gap: clamp(30px, 5vw, 50px);
@@ -188,55 +197,112 @@ section {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* VIŠE O MENI - PASUSI */
-.viseOMeni .contentContainer {
-    flex-direction: column;
-    align-items: stretch;
-}
-
-.viseOMeni .bottom-img {
-    max-width: 100%;
-    max-height: 350px;
-    width: 100%;
-    margin-top: 30px;
-    object-position: center;
-    flex: none;
-}
-
-.pasusContainer {
+/* =========================================
+   6. VIŠE O MENI
+   ========================================= */
+.cards-container {
     display: flex;
-    gap: 15px;
-    align-items: flex-start;
-    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
     width: 100%;
 }
 
-.pasusContainer .ico {
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
+.vise-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 30%;
+    min-width: 250px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.pasusContainer p {
-    flex: 1;
-    color: white;
-    font-size: clamp(13px, 1.6vw, 15px);
+.vise-card:hover {
+    background: rgba(0, 235, 185, 0.1);
+    border-color: #00EBB9;
+}
+
+.card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-front .ico {
+    width: 60px;
+    height: 60px;
+}
+
+.card-front h3 {
+    color: #ffffff;
+    font-size: clamp(18px, 2vw, 22px);
     margin: 0;
 }
 
-/* STACK SEKCIJA */
-.stack h3 {
-    color: white;
-    padding: 15px;
-    font-size: 25px;
+.card-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 115%;
+    min-width: 280px;
+    background-color: rgba(8, 8, 8, 0.925);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid #00EBB9;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 235, 185, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; 
 }
 
-.stack p {
-    color: white;
-    padding: 0 0 5px 15px;
-    font-size: 18px;
+.popup-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.card-popup p {
+    color: #ddd;
+    font-size: clamp(13px, 1.6vw, 15px) !important;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0;
+}
+
+@media (hover: hover) {
+    .vise-card:hover { z-index: 150; }
+    .vise-card:hover .card-popup {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
+        pointer-events: auto;
+    }
+}
+
+.vise-card.active { z-index: 150; }
+.vise-card.active .card-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+/* =========================================
+   7. STACK SEKCIJA
+   ========================================= */
 .stack-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -246,7 +312,7 @@ section {
 }
 
 .StackContainer {
-    background-color: rgba(8, 8, 8, 0.8);
+    background-color: rgba(8, 8, 8, 0.451);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 15px 20px;
@@ -261,6 +327,18 @@ section {
     grid-column: span 2;
 }
 
+.stack h3 {
+    color: white;
+    padding: 15px;
+    font-size: clamp(18px, 1.3vw, 25px);
+}
+
+.stack p {
+    color: white;
+    padding: 0 0 5px 15px;
+    font-size: 18px;
+}
+
 .badges {
     display: flex;
     flex-wrap: wrap;
@@ -269,78 +347,30 @@ section {
     padding: 0;
 }
 
-/* TECH BADGES */
 .tech-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    font-size: clamp(17px, 1.5vw, 20px);
+    font-size: clamp(12px, 1.5vw, 20px);
     font-weight: bolder;
-    padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 16px);
+    padding: clamp(4px, 1vw, 8px) clamp(8px, 2vw, 16px);
 }
 
-.cpp, .c { 
-    border: 5px solid rgb(141, 120, 255); 
-    background-color: rgb(25, 3, 169); 
-    color: rgb(141, 120, 255); 
-}
+.cpp, .c { border: 5px solid rgb(141, 120, 255); background-color: rgb(25, 3, 169); color: rgb(141, 120, 255); }
+.cs, .svg { border: 5px solid rgb(198, 124, 255); background-color: rgb(83, 13, 137); color: rgb(198, 124, 255); }
+.maui { border: 5px solid rgb(255, 131, 230); background-color: rgb(131, 21, 109); color: rgb(255, 131, 230); }
+.sql, .ms { border: 5px solid rgb(255, 185, 132); background-color: rgb(164, 71, 0); color: rgb(255, 185, 132); }
+.uiux, .web { border: 5px solid rgb(104, 252, 114); background-color: rgb(0, 131, 9); color: rgb(104, 252, 114); }
+.git { border: 5px solid rgb(254, 115, 115); background-color: rgb(131, 0, 0); color: rgb(254, 115, 115); }
+.ecpp, .docker { border: 5px solid rgb(113, 224, 255); background-color: rgb(0, 103, 131); color: rgb(113, 224, 255); }
+.linux { border: 5px solid rgb(248, 255, 146); background-color: rgb(122, 131, 0); color: rgb(248, 255, 146); }
+.py { border: 5px solid rgb(251, 255, 202); background-color: rgb(195, 185, 0); color: rgb(251, 255, 202); }
+.theory { border: 5px solid rgb(189, 189, 189); background-color: rgb(69, 69, 69); color: rgb(189, 189, 189); }
 
-.cs, .svg { 
-    border: 5px solid rgb(198, 124, 255); 
-    background-color: rgb(83, 13, 137); 
-    color: rgb(198, 124, 255); 
-}
-
-.maui { 
-    border: 5px solid rgb(255, 131, 230); 
-    background-color: rgb(131, 21, 109); 
-    color: rgb(255, 131, 230); 
-}
-
-.sql, .ms { 
-    border: 5px solid rgb(255, 185, 132); 
-    background-color: rgb(164, 71, 0); 
-    color: rgb(255, 185, 132); 
-}
-
-.uiux, .web { 
-    border: 5px solid rgb(104, 252, 114); 
-    background-color: rgb(0, 131, 9); 
-    color: rgb(104, 252, 114); 
-}
-
-.git { 
-    border: 5px solid rgb(254, 115, 115); 
-    background-color: rgb(131, 0, 0); 
-    color: rgb(254, 115, 115); 
-}
-
-.ecpp, .docker { 
-    border: 5px solid rgb(113, 224, 255); 
-    background-color: rgb(0, 103, 131); 
-    color: rgb(113, 224, 255); 
-}
-
-.linux { 
-    border: 5px solid rgb(248, 255, 146); 
-    background-color: rgb(122, 131, 0); 
-    color: rgb(248, 255, 146); 
-}
-
-.py { 
-    border: 5px solid rgb(251, 255, 202); 
-    background-color: rgb(195, 185, 0); 
-    color: rgb(251, 255, 202); 
-}
-
-.theory { 
-    border: 5px solid rgb(189, 189, 189); 
-    background-color: rgb(69, 69, 69); 
-    color: rgb(189, 189, 189); 
-}
-
-/* PROJEKTI SEKCIJA */
+/* =========================================
+   8. PROJEKTI
+   ========================================= */
 section.projekti {
     background-color: transparent;
     box-shadow: none;
@@ -383,28 +413,55 @@ section.projekti {
     color: #ffffff;
 }
 
+.read-more-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #00EBB9;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
 .pro-links {
-    margin-top: 25px;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    align-items: center;
 }
 
 .pro-links a {
-    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    font-size: 14px;
-    border-bottom: 1px solid #ffffff;
-    padding-bottom: 2px;
+    border: none;
+    padding: 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.pro-links a img {
+    width: clamp(24px, 3vw, 30px);
+    height: clamp(24px, 3vw, 30px);
+    object-fit: contain;
+    opacity: 0.8;
     transition: all 0.3s ease;
 }
 
 .pro-links a:hover {
-    color: #00EBB9;
-    border-bottom-color: #00EBB9;
+    transform: translateY(-3px) scale(1.1);
 }
 
-/* IMAGE CONTAINERS */
+.pro-links a:hover img {
+    opacity: 1;
+    filter: drop-shadow(0 5px 10px rgba(0, 235, 185, 0.4));
+}
+
 .ImageContainer {
     flex: 1 1 350px;
     display: flex;
@@ -444,7 +501,6 @@ section.projekti {
     background: #000;
 }
 
-/* KASKADA SLIKE */
 .kaskada {
     position: relative;
     min-height: 500px;
@@ -463,7 +519,7 @@ section.projekti {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), margin 0.4s, z-index 0.4s;
 }
 
-.kaskada img:nth-child(1) { margin: -100px 0 0 -120px; z-index: 1; }
+.kaskada img:nth-child(1) { margin: -90px 0 0 -120px; z-index: 1; }
 .kaskada img:nth-child(2) { margin: -30px 0 0 -40px; z-index: 2; }
 .kaskada img:nth-child(3) { margin: 40px 0 0 40px; z-index: 3; }
 .kaskada img:nth-child(4) { margin: 110px 0 0 120px; z-index: 4; transform: rotate(-90deg); }
@@ -480,7 +536,6 @@ section.projekti {
     transform: scale(2) rotate(0deg);
 }
 
-/* SLIDER */
 .slider-wrapper {
     position: relative;
     width: 100%;
@@ -495,6 +550,7 @@ section.projekti {
 
 .slider-track {
     display: flex;
+    align-items: flex-start;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     width: 100%;
 }
@@ -536,11 +592,13 @@ section.projekti {
 .prev-btn { left: -60px; }
 .next-btn { right: -60px; }
 
-/* FOOTER */
+/* =========================================
+   9. FOOTER
+   ========================================= */
 .footer-glass {
     max-width: 1200px;
     margin: 0 auto 40px auto;
-    background: rgba(20, 20, 20, 0.8);
+    background-color: rgba(8, 8, 8, 0.451);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 30px;
@@ -620,7 +678,42 @@ section.projekti {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ANIMACIJE */
+/* =========================================
+   10. HINTS / NAPOMENE
+   ========================================= */
+.title-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.hint-text {
+    font-size: 11px;
+    color: #00EBB9;
+    font-style: italic;
+    margin-top: -5px;
+}
+
+.mobile-hint { display: none; }
+.desktop-hint { display: block; }
+
+.swipe-hint {
+    display: none;
+    text-align: center;
+    color: #00EBB9;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   11. ANIMACIJE
+   ========================================= */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
 .appear {
     opacity: 0;
     transform: translateY(30px);
@@ -632,13 +725,22 @@ section.projekti {
     transform: translateY(0);
 }
 
-/* RESPONZIVNOST */
+/* =========================================
+   12. MEDIA UPITI (RESPONZIVNOST)
+   ========================================= */
 @media (max-width: 1300px) {
     .prev-btn { left: 5px; }
     .next-btn { right: 5px; }
 }
 
 @media (max-width: 768px) {
+    section { padding: 20px 15px !important; }
+    .slider-btn { display: none !important; }
+
+    .desktop-hint { display: none; }
+    .mobile-hint { display: block; }
+    .swipe-hint { display: block; }
+
     .nav-links {
         position: fixed;
         top: 65px;
@@ -654,37 +756,77 @@ section.projekti {
         border-bottom: 1px solid rgba(0, 235, 185, 0.1);
     }
 
-    .nav-links.active {
-        transform: translateY(0);
+    .nav-links.active { transform: translateY(0); }
+    .nav-toggle { display: block; }
+
+    .contentContainer > p, 
+    .StackContainer p,
+    .TextContainer p {
+        font-size: 14px !important;
+        line-height: 1.6;
+        margin: 0;
     }
 
-    .nav-toggle {
-        display: block;
-    }
-
-    .stack-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .stack-grid .StackContainer:nth-child(3) {
-        grid-column: span 1;
-    }
-
-    .contentContainer {
-        justify-content: center;
+    .oMeni .contentContainer {
         text-align: center;
+        justify-content: center;
     }
-
+    
     .contentContainer > img {
         max-width: 100%;
         flex: 0 1 100%;
+        margin: 0 auto;
     }
 
-    .pasusContainer {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .stack-grid { grid-template-columns: 1fr; }
+    .stack-grid .StackContainer:nth-child(3) { grid-column: span 1; }
+
+    .ProjectContainer {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 20px !important;
     }
+
+    .TextContainer {
+        order: 1;
+        width: 100%;
+    }
+
+    .ImageContainer {
+        order: 2;
+        width: 100% !important;
+        margin-top: 0px;
+    }
+
+    .TextContainer h3 { font-size: 18px !important; }
+
+    .read-more-btn {
+        display: block; 
+    }
+
+    .project-description {
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    .project-description.expanded {
+        display: block !important;
+        -webkit-line-clamp: unset !important;
+        max-height: none !important;
+    }
+
+    .kaskada { min-height: 400px !important; }
+    .kaskada img { width: 100px !important; }
+    .kaskada img:nth-child(1) { margin: -160px 0 0 -80px !important; }
+    .kaskada img:nth-child(2) { margin: -50px 0 0 -20px !important; }
+    .kaskada img:nth-child(3) { margin: 60px 0 0 30px !important; }
+    .kaskada img:nth-child(4) { margin: 170px 0 0 80px !important; transform: rotate(-90deg); }
+
+    .kaskada img:hover { transform: scale(1.5);}
 }
 
 @media (max-width: 600px) {
@@ -692,12 +834,10 @@ section.projekti {
         flex-direction: column;
         gap: 20px;
     }
-
     .footer-link {
         width: 100%;
         max-width: 280px;
     }
-
     .email-link {
         flex-direction: column;
     }

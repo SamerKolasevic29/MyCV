@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/MyCV/">
+    
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
@@ -45,23 +45,47 @@
     <!-- VIŠE O MENI -->
     <div class="headingContainer" id="viseOMeni">
         <img src="assets/Icons/More.png" alt="">
-        <h2>Više o meni</h2>
+        <div class="title-wrap">
+            <h2>Više o meni</h2>
+            <span class="hint-text desktop-hint">Hover to expand</span>
+            <span class="hint-text mobile-hint">Tap to expand</span>
+        </div>
     </div>
-    <section class="viseOMeni appear" >
-        <div class="contentContainer">
-            <div class="pasusContainer">
-                <img class="ico" src="assets/Icons/Education.png" alt="">
-                <p><b>Obrazovanje: </b>Pohađao Osnovnu Školu "Travnik" u Travniku kao i Mješovitu Srednju Tehničku školu "Travnik", smjer Računarstvo i informatika. Odličan uspjeh i u osnovnom i u srednjoškolskom obrazovanju, <u>kao srednjoškolcu uručena nagrada učenika generacije</u></p>
+    <section class="viseOMeni appear" style="overflow: visible;">
+        <div class="cards-container">
+            
+            <div class="vise-card">
+                <div class="card-front">
+                    <img class="ico" src="assets/Icons/Education.png" alt="">
+                    <h3>Obrazovanje</h3>
+                </div>
+                <div class="card-popup">
+                    <img src="assets/MainMaterial/msts.jpeg" alt="Obrazovanje slika" class="popup-img">
+                    <p>Pohađao Osnovnu Školu "Travnik" u Travniku kao i Mješovitu Srednju Tehničku školu "Travnik", smjer Računarstvo i informatika. Odličan uspjeh, <u>kao srednjoškolcu uručena nagrada učenika generacije.</u></p>
+                </div>
             </div>
-            <div class="pasusContainer">
-                <img class="ico" src="assets/Icons/Target.png" alt="">
-                <p><b>Sport: </b>6 godina bavljenja streljaštvom olimpijske discipline (Vazdušna puška 10 metara), bivši član Sportskog Streljačkog kluba "Target" iz Travnika i Sportskog Streljačkog Kluba "Željezničar" iz Sarajeva. Pored uspjeha na svim nivoima unutar države, <u>najveći uspjeh je kao prvak Federacije Bosne i Hercegovine u kategoriji seniora i nosilac rekorda u istoj disciplini.</u></p>
+
+            <div class="vise-card">
+                <div class="card-front">
+                    <img class="ico" src="assets/Icons/Target.png" alt="">
+                    <h3>Sport</h3>
+                </div>
+                <div class="card-popup">
+                    <img src="assets/MainMaterial/Moja2.jpg" alt="Sport slika" class="popup-img">
+                    <p>6 godina bavljenja streljaštvom olimpijske discipline (Vazdušna puška 10m). Pored brojnih uspjeha, <u>najveći uspjeh je kao prvak Federacije BiH u kategoriji seniora i nosilac rekorda.</u></p>
+                </div>
             </div>
-            <div class="pasusContainer">
-                <img class="ico" src="assets/Icons/Muscle.png" alt="">
-                <p><b>Izbor motivacije: </b>Konstantno učenje novih tehnologija, kao i tendencija za razvoj znanja u već poznatim, čitanje raznog štiva u slobodno vrijeme, fizički trening i disciplina, u kombinaciji sa svim tim je razvoj softvera u publici i angažovanje u društvu za društvo (redovni darivatelj krvi)</p>
+
+            <div class="vise-card">
+                <div class="card-front">
+                    <img class="ico" src="assets/Icons/Muscle.png" alt="">
+                    <h3>Izbor motivacije</h3>
+                </div>
+                <div class="card-popup">
+                    <img src="assets/MainMaterial/bookshelf.jpeg" alt="Motivacija slika" class="popup-img">
+                    <p>Konstantno učenje novih tehnologija, fizički trening i disciplina. U kombinaciji sa svim tim je razvoj softvera u publici i angažovanje u društvu (redovni darivatelj krvi).</p>
+                </div>
             </div>
-            <img src="assets/MainMaterial/Moja2.jpg" alt="" class="bottom-img">
         </div>
     </section>
 
@@ -122,7 +146,7 @@
             <img src="assets/Icons/Code.png" alt="">
             <h2>Projekti i radovi</h2>
         </div>
-
+            <p class="swipe-hint">swipe for next/previous project ↔</p>
         <div class="slider-wrapper">
             <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
 
@@ -133,16 +157,24 @@
                     <div class="ProjectContainer appear">
                         <div class="TextContainer">
                             <h3>BORBA - TUI igra</h3>
-                            <p>BORBA (v1.3) je konzolna igra na poteze (kao stare pokemon igre) napisana u C++ jeziku. Sačinjena od custom header-only biblioteke za animacije, RAII principa, MVC arhitekture koja je na početku bila monolitna i STL biblioteke. Cilj ovoga projekta je bio refaktorisanje ranijih verzija, vladanje Git repozitorija i zaokruživanje stečenog znanja iz C++ jezika što privatno, što na fakultetu.</p>
+                            <p class = "project-description">BORBA (v1.3) je konzolna igra na poteze (kao stare pokemon igre) napisana u C++ jeziku. Sačinjena od custom header-only biblioteke za animacije, RAII principa, MVC arhitekture koja je na početku bila monolitna i STL biblioteke.</p>
+                            <button class="read-more-btn">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge cpp">C++</span>
+                                <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/BORBA-v1.3" target="_blank">Github Repozitorij</a>
-                                <a href="https://github.com/SamerKolasevic29/BORBA-V1.0" target="_blank">Github legacy Repozitorij</a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-gamedev-ugcPost-7431345320569192449-kwdS" target="_blank">LinkedIn objava</a>
-                            </div>
+    <a href="https://github.com/SamerKolasevic29/BORBA-v1.3" target="_blank" title="Github Repozitorij">
+        <img src="assets/Icons/githab.png" alt="GitHub">
+    </a>
+    <a href="https://github.com/SamerKolasevic29/BORBA-V1.0" target="_blank" title="Github legacy Repozitorij">
+        <img src="assets/Icons/githab.png" alt="GitHub Legacy">
+    </a>
+    <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-gamedev-ugcPost-7431345320569192449-kwdS" target="_blank" title="LinkedIn objava">
+        <img src="assets/Icons/linkedin.png" alt="LinkedIn">
+    </a>
+</div>
                         </div>
                         <div class="ImageContainer grid-vertical">
                             <img src="assets/MainMaterial/Borba.webp" alt="Borba igra">
@@ -154,20 +186,28 @@
                     <div class="ProjectContainer appear">
                         <div class="TextContainer">
                             <h3>TiltControl - višenamjenski projekat</h3>
-                            <p>Mobilna aplikacija u fokusu očitavanja vrijednosti sa akcelerometra koja je pronašla svoju namjenu u:</p>
-                            <p>- Aplikaciji koja raspolaže manipulacijom objekta u stvarnom vremenu (pokret, veličinu i brzinu) i logikom za sudar sa drugim objektom [mobile-game engine]</p>
-                            <p>- Kontroler koji čita vrijednosti akcelerometra sa dvije ose, kalkuliše i daje na izlaz mapiran custom-made format u cilju upravljanja "Pan-tilt bracket" sistema preko UDP protokola u stvarnom vremenu</p>
-                            <p>Također, cilj projekta je implementacija sopstvenih ideja pored fakultativnih obaveza, te razvoj softvera u publici (plasiranje na LinkedIn).</p>
+                            <p class="project-description">
+                                 Mobilna aplikacija u fokusu očitavanja vrijednosti sa akcelerometra koja je pronašla svoju namjenu u:<br><br>
+                                 - Aplikaciji koja raspolaže manipulacijom objekta u stvarnom vremenu (pokret, veličinu i brzinu) i logikom za sudar sa drugim objektom [mobile-game engine]<br>
+                                 - Kontroler koji čita vrijednosti akcelerometra sa dvije ose, kalkuliše i daje na izlaz mapiran custom-made format u cilju upravljanja "Pan-tilt bracket" sistema preko UDP protokola u stvarnom vremenu<br><br>
+                                 Također, cilj projekta je implementacija sopstvenih ideja pored fakultativnih obaveza, te razvoj softvera u publici (plasiranje na LinkedIn).
+                            </p>
+                            <button class="read-more-btn">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge cs">.NET C#</span>
                                 <span class="tech-badge maui">.NET MAUI</span>
+                                <span class="tech-badge git">Git</span>
                                 <span class="tech-badge ecpp">Embedded (C++)</span>
                             </div>
-                            <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/TiltControl" target="_blank">Github Repozitorij</a>
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415775892251316224/" target="_blank">LinkedIn objava</a>
-                            </div>
+                           <div class="pro-links">
+    <a href="https://github.com/SamerKolasevic29/TiltControl" target="_blank" title="Github Repozitorij">
+        <img src="assets/Icons/githab.png" alt="GitHub">
+    </a>
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415775892251316224/" target="_blank" title="LinkedIn objava">
+        <img src="assets/Icons/linkedin.png" alt="LinkedIn">
+    </a>
+</div>
                         </div>
                         <div class="ImageContainer kaskada">
                             <img src="assets/MainMaterial/BiggerSmaller.gif" alt="">
@@ -181,17 +221,25 @@
                     <div class="ProjectContainer appear">
                         <div class="TextContainer">
                             <h3>RBAC-SYS - Admin vs Worker</h3>
-                            <p>Tokom realizacije seminarskog rada na temu "Upravljanje identitetima i pristupima (IAM sistemi)" kao praktični dio bila je implementacija RBAC sistema u terminalu napisan u C++ programskom jeziku. RBAC-SYS nudi samu separaciju uloga u sistemu, ko je nadređeni, a ko podređeni. Također, dodan je custom editor na ciljani fajl koji daje iskustvo Vim okruženja kao i nano naredbe na Linux distribucijama. Cilj je bio da se napravi projekat u kojem ću svoje biblioteke ponovo upotrijebiti i unaprijediti tokom nailaženja na nove izazove, te upoznati se sa eksternim bibliotekama koje imaju podršku za taj jezik.</p>
+                            <p class = "project-description">Tokom realizacije seminarskog rada na temu "Upravljanje identitetima i pristupima (IAM sistemi)" kao praktični dio bila je implementacija RBAC sistema u terminalu napisan u C++ programskom jeziku. RBAC-SYS nudi samu separaciju uloga u sistemu, ko je nadređeni, a ko podređeni. Također, dodan je custom editor na ciljani fajl koji daje iskustvo Vim okruženja kao i nano naredbe na Linux distribucijama. Cilj je bio da se napravi projekat u kojem ću svoje biblioteke ponovo upotrijebiti i unaprijediti tokom nailaženja na nove izazove, te upoznati se sa eksternim bibliotekama koje imaju podršku za taj jezik.</p>
+                            <button class="read-more-btn">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge cpp">C++</span>
                                 <span class="tech-badge linux">Linux</span>
+                                <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/RBACimplementation" target="_blank">Github Repozitorij</a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-cybersecurity-ugcPost-7444677986198609920-lxef" target="_blank">LinkedIn objava</a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_during-the-reuse-of-my-custom-animationh-ugcPost-7443298048321032194-ngeW" target="_blank">LinkedIn article</a>
-                            </div>
+    <a href="https://github.com/SamerKolasevic29/RBACimplementation" target="_blank" title="Github Repozitorij">
+        <img src="assets/Icons/githab.png" alt="GitHub">
+    </a>
+    <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-cybersecurity-ugcPost-7444677986198609920-lxef" target="_blank" title="LinkedIn objava">
+        <img src="assets/Icons/linkedin.png" alt="LinkedIn">
+    </a>
+    <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_during-the-reuse-of-my-custom-animationh-ugcPost-7443298048321032194-ngeW" target="_blank" title="LinkedIn article">
+        <img src="assets/Icons/linkedin.png" alt="LinkedIn Article">
+    </a>
+</div>
                         </div>
                         <div class="ImageContainer grid-vertical">
                             <img src="assets/MainMaterial/RBAC.webp" alt="">
@@ -203,7 +251,8 @@
                     <div class="ProjectContainer appear">
                         <div class="TextContainer">
                             <h3>Mnoštvo grafičkih prijedloga</h3>
-                            <p>Na predmetima vezanim za grafiku i općenito dizajn razvio sam vještinu sistematske podjele potrebnih stavki i komponenti u projektima, sama pravila UI/UX oblasti, te konstantnim radom i znatiželjom razvio sam malo osjećaja za kreiranje grafičkih rješenja po pitanju reklamnih postera, vizit kartica, kao i kompletnih wireframe rješenja za aplikacije. Nažalost, nemam toliko prilike da se posvetim ovoj oblasti radi ostalih strasti, međutim ovaj nivo znanja mi dobro dođe kao još jedan alat na švicarskom nožu.</p>
+                            <p class = "project-description"> Na predmetima vezanim za grafiku i općenito dizajn razvio sam vještinu sistematske podjele potrebnih stavki i komponenti u projektima, sama pravila UI/UX oblasti, te konstantnim radom i znatiželjom razvio sam malo osjećaja za kreiranje grafičkih rješenja po pitanju reklamnih postera, vizit kartica, kao i kompletnih wireframe rješenja za aplikacije. Nažalost, nemam toliko prilike da se posvetim ovoj oblasti radi ostalih strasti, međutim ovaj nivo znanja mi dobro dođe kao još jedan alat na švicarskom nožu.</p>
+                            <button class="read-more-btn">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge uiux">UI/UX (Figma)</span>
