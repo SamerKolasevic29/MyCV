@@ -5,6 +5,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    
+}
+
+#oMeni, #viseOMeni, #stack, #projekti, #kontakt {
+    scroll-margin-top: 70px; 
 }
 
 body {
@@ -15,7 +21,7 @@ body {
     padding-top: 80px;
     
     /* Novi background */
-    background: radial-gradient(circle at top center, rgba(5, 74, 59, 0.783) 0%, #062520 60%);
+    background: radial-gradient(circle at top center, rgb(12, 139, 112) 10%, rgb(4, 85, 70) 30%, rgb(1, 30, 25) 50%, rgb(0,0,0) 80%) ;
     background-attachment: fixed;
 }
 
@@ -136,7 +142,6 @@ header p {
    ========================================= */
 section {
     max-width: 1200px;
-    scroll-margin-top: 150px;
     margin: 0 auto clamp(60px, 10vw, 120px) auto;
     padding: clamp(30px, 5vw, 50px) clamp(20px, 3vw, 30px);
     background: rgba(103, 103, 103, 0.2);
@@ -184,6 +189,11 @@ section {
     line-height: 1.8;
 }
 
+.green {
+    color: #00EBB9;
+    font-weight: bolder;
+}
+
 .contentContainer > img {
     flex: 0 1 350px;
     max-width: 400px;
@@ -200,6 +210,10 @@ section {
 /* =========================================
    6. VIŠE O MENI
    ========================================= */
+
+   section.viseOMeni {
+    margin-bottom: 500px !important; /* Ovaj broj možeš povećati ako ti treba još prostora */
+}
 .cards-container {
     display: flex;
     justify-content: center;
@@ -210,7 +224,7 @@ section {
 
 .vise-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.405);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 30px 20px;
@@ -312,7 +326,7 @@ section {
 }
 
 .StackContainer {
-    background-color: rgba(8, 8, 8, 0.451);
+    background-color: rgba(0, 0, 0, 0.451);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 15px 20px;
@@ -357,6 +371,43 @@ section {
     padding: clamp(4px, 1vw, 8px) clamp(8px, 2vw, 16px);
 }
 
+.stack-header {
+    display: flex;
+    justify-content: space-between; /* Gura naslov lijevo, dugme desno */
+    align-items: center;
+    cursor: pointer; /* Omogućava da klik na cijeli red otvori sekciju */
+}
+
+.expand-btn {
+    background: none;
+    border: none;
+    color: #00EBB9;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    padding: 0 15px;
+}
+
+/* Klasa koja rotira trougao za 180 stepeni */
+.expand-btn.rotated {
+    transform: rotate(180deg);
+}
+
+/* Kontejner koji krijemo i prikazujemo */
+.theory-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.5s ease;
+}
+
+/* Klasa kada je sekcija otvorena */
+.theory-content.open {
+    max-height: 500px; /* Dovoljno veliko da stanu svi bedževi */
+    opacity: 1;
+    margin-top: 10px;
+}
+
 .cpp, .c { border: 5px solid rgb(141, 120, 255); background-color: rgb(25, 3, 169); color: rgb(141, 120, 255); }
 .cs, .svg { border: 5px solid rgb(198, 124, 255); background-color: rgb(83, 13, 137); color: rgb(198, 124, 255); }
 .maui { border: 5px solid rgb(255, 131, 230); background-color: rgb(131, 21, 109); color: rgb(255, 131, 230); }
@@ -372,6 +423,10 @@ section {
    8. PROJEKTI
    ========================================= */
 section.projekti {
+    background: none;
+    margin-bottom: 10px !important;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
     background-color: transparent;
     box-shadow: none;
     padding-left: 0;
@@ -380,14 +435,29 @@ section.projekti {
 }
 
 .ProjectContainer {
-    background-color: #000000;
-    border-radius: 50px;
+   background-color: rgba(0, 0, 0, 0.564);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 70px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
     padding: clamp(20px, 4vw, 40px);
-    margin-bottom: clamp(30px, 5vw, 50px);
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
     align-items: center;
+}
+
+.ProjectContainer .tech-badge {
+    font-size: clamp(10px, 1vw, 14px); /* Znatno manji font */
+    padding: 3px 10px; /* Manji unutrašnji prostor (padding) */
+    border-width: 3px; /* Tanji okvir (gore je 5px) */
+    border-radius: 6px; /* Malo oštrije ivice jer su manji */
+}
+
+/* Opcionalno: Smanji i prostor između samih bedževa u projektima */
+.ProjectContainer .badges {
+    gap: 8px;
+    margin: 10px 0 15px 0;
 }
 
 .TextContainer {
@@ -405,6 +475,12 @@ section.projekti {
 .TextContainer p {
     color: #c0c0c0;
     margin-bottom: 10px;
+}
+
+.TextContainer .bullet {
+    color: #00EBB9;
+    font-size: clamp(15px, 2.5vw, 25px);
+    
 }
 
 .TextContainer .tech-naslov {
@@ -562,35 +638,41 @@ section.projekti {
     margin-bottom: 0;
 }
 
+.slider-controls {
+    margin-left: auto;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
 .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0);
     color: #00EBB9;
-    border: 2px solid #00EBB9;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 24px;
+    border-color: transparent;
+    width:  60px;
+    height: 60px;
+    font-size: 40px;
     cursor: pointer;
-    z-index: 100;
     transition: all 0.3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    /* uklanjamo position: absolute, top, transform, left, right */
+    position: static;
+    transform: none;
 }
 
 .slider-btn:hover {
-    background: #00EBB9;
-    color: #000;
-    box-shadow: 0 0 15px rgba(0, 235, 185, 0.5);
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.5);
 }
 
-.prev-btn { left: -60px; }
-.next-btn { right: -60px; }
+.slider-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 
 /* =========================================
    9. FOOTER
@@ -728,11 +810,6 @@ section.projekti {
 /* =========================================
    12. MEDIA UPITI (RESPONZIVNOST)
    ========================================= */
-@media (max-width: 1300px) {
-    .prev-btn { left: 5px; }
-    .next-btn { right: 5px; }
-}
-
 @media (max-width: 768px) {
     section { padding: 20px 15px !important; }
     .slider-btn { display: none !important; }
@@ -782,21 +859,26 @@ section.projekti {
     .stack-grid .StackContainer:nth-child(3) { grid-column: span 1; }
 
     .ProjectContainer {
+        border-radius: 40px;
+        border: none;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 20px !important;
+        gap: 10px !important;
+        padding: 20px 15px !important;
     }
 
     .TextContainer {
         order: 1;
         width: 100%;
+        margin-bottom: 0px !important;
     }
 
     .ImageContainer {
         order: 2;
         width: 100% !important;
-        margin-top: 0px;
+        margin-top: 0px !important;
     }
+    
 
     .TextContainer h3 { font-size: 18px !important; }
 
@@ -841,4 +923,69 @@ section.projekti {
     .email-link {
         flex-direction: column;
     }
+}
+
+.mini-slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.m-slide {
+    display: none; 
+    width: 100%;
+    justify-content: center;
+    align-items: center; /* Ovo drži niske slike na sredini po vertikali */
+    gap: 15px;
+    animation: fadeIn 0.5s;
+    
+    /* Fiksiramo prostor kako tipke ispod ne bi "hodale" */
+    min-height: 360px; 
+}
+
+.m-slide.active {
+    display: flex; 
+}
+
+.m-slide img {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    
+    /* Zadržava prave proporcije slike da se ne razvuče */
+    object-fit: contain; 
+}
+
+.m-slide.double img {
+    max-width: 48%; 
+}
+
+/* Tipke ispod slika */
+.m-slider-controls {
+    margin-top: 40px; /* ODMAKNUTO: Povećan prostor između slike i tipki (bilo je 20px) */
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px; /* Fiksna visina za same tipke */
+}
+.m-btn {
+    background: transparent;
+    color: #00EBB9;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.m-btn:hover {
+    transform: scale(1.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
