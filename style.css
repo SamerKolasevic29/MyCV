@@ -1,6 +1,11 @@
 /* =========================================
    1. RESET I OSNOVNI STILOVI (BASE)
    ========================================= */
+
+html { 
+    background-color: #000000;
+    overscroll-behavior-y: none;
+}
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +19,7 @@
 }
 
 body {
+    overflow-x: hidden;
     font-family: 'JetBrains Mono', monospace;
     line-height: 1.6;
     color: #333;
