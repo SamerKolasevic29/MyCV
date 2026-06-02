@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="bs">
 <head>
-    <base href="/MyCV/"> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Samer Kolasević – student softverskog inženjerstva, C++, .NET, Linux, SQL. Pogledajte moje projekte i tehnički stack.">
+    <meta name="description" content="Samer Kolasević – student softverskog inženjerstva (UNZE). Projekti, članci i Europass CV.">
     <meta name="author" content="Samer Kolasević">
-    <meta name="keywords" content="Samer Kolasević, softverski inženjer, C++, .NET, MAUI, Linux, SQL, CV, portfolio, Bosna">
+    <meta name="keywords" content="Samer Kolasević, softverski inženjer, C++, .NET, MAUI, Linux, SQL, CV, portfolio, Bosna, UNZE">
 
-    <link rel="canonical" href="https://samerkolasevic29.github.io/MyCV/">
+    <link rel="canonical" href="https://www.samer.kolasevic.com/">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Samer Kolasević – Softverski inženjer">
-    <meta property="og:description" content="Student softverskog inženjerstva | CV">
-    <meta property="og:url" content="https://samerkolasevic29.github.io/MyCV/">
-    <meta property="og:image" content="https://samerkolasevic29.github.io/MyCV/assets/MainMaterial/headImage.jpg">
+    <meta property="og:description" content="Student softverskog inženjerstva (UNZE)">
+    <meta property="og:url" content="https://www.samer.kolasevic.com/">
+    <meta property="og:image" content="https://www.samer.kolasevic.com/assets/MainMaterial/headImage.jpg">
     <meta property="og:locale" content="bs_BA">
     <meta property="og:site_name" content="Samer Kolasević – CV">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Samer Kolasević – Softverski inženjer">
     <meta name="twitter:description" content="Student softverskog inženjerstva | C++, .NET, Linux, SQL">
-    <meta name="twitter:image" content="https://samerkolasevic29.github.io/MyCV/assets/MainMaterial/headImage.jpg">
+    <meta name="twitter:image" content="https://www.samer.kolasevic.com/assets/MainMaterial/headImage.jpg">
 
     <link rel="icon" type="image/png" href="assets/Icons/favicon.png">
     <link rel="apple-touch-icon" href="assets/Icons/favicon.png">
@@ -32,84 +31,115 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    
-    <title>Samer Kolasević | CV </title>
+    <title>Samer Kolasević | Softverski inženjer</title>
 </head>
 <body>
 
+    <!-- ============== NAVIGACIJA ============== -->
     <nav class="navbar">
-        <div class="nav-logo">Moj CV</div>
+        <a href="#pocetna" class="nav-logo">SK</a>
         <ul class="nav-links">
-            <li><a href="#oMeni">O meni</a></li>
+            <li><a href="#pocetna">Početna</a></li>
             <li><a href="#stack">Stack</a></li>
             <li><a href="#projekti">Projekti</a></li>
-            <li><a href="#viseOMeni">Više</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="#clanci">Članci</a></li>
+            <li><a href="#oMeni">O meni</a></li>
         </ul>
-        <button class="nav-toggle" id="navToggle">☰</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Otvori meni">☰</button>
     </nav>
 
-    <header>
-        <h1 id="typewriter-name"></h1>
-        <p id="typewriter-title"></p>
+    <!-- ============== HERO / HEADER ============== -->
+    <header id="pocetna" class="hero">
+        <div class="hero-inner">
+            <p class="hero-eyebrow">// portfolio</p>
+            <h1 class="hero-name">Samer Kolasević</h1>
+            <p class="hero-title">Student softverskog inženjerstva — UNZE</p>
+            <p class="hero-bio">
+                Trenutno na 2. godini studija. Fokus na <span class="green">C++</span>,
+                <span class="green">.NET</span>, <span class="green">SQL</span> i <span class="green">Linux</span> okruženju.
+                Aktivno tražim <span class="green">praksu</span> ili <span class="green">junior poziciju</span>.
+            </p>
+
+            <div class="hero-cta">
+                <a class="cta-btn cta-primary" href="assets/Documents/SamerKolasevicCV.pdf" download>
+                    <span class="cta-icon" aria-hidden="true">⬇</span>
+                    <span class="cta-text">
+                        <span class="cta-label">Preuzmi</span>
+                        <span class="cta-sub">Europass CV (PDF)</span>
+                    </span>
+                </a>
+                <a class="cta-btn" href="https://github.com/SamerKolasevic29" target="_blank" rel="noopener">
+                    <span class="cta-icon" aria-hidden="true">◆</span>
+                    <span class="cta-text">
+                        <span class="cta-label">GitHub</span>
+                        <span class="cta-sub">SamerKolasevic29</span>
+                    </span>
+                </a>
+                <a class="cta-btn" href="https://www.linkedin.com/in/samer-kolasevi%C4%87-119aaa377/" target="_blank" rel="noopener">
+                    <span class="cta-icon" aria-hidden="true">in</span>
+                    <span class="cta-text">
+                        <span class="cta-label">LinkedIn</span>
+                        <span class="cta-sub">Povežimo se</span>
+                    </span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <div class="headingContainer" id="oMeni">
-        <img src="assets/Icons/Person.png" alt="">
-        <h2>O meni</h2>
-    </div>
-    <section class="oMeni appear">
-        <div class="contentContainer">
-            <p>
-                <span class="green">Datum rođenja: </span>27. August 2003.<br><br>
-                <span class="green">Edukacija: </span> 2. godina odsjeka Softversko inženjerstvo, UNZE<br><br>
-                <span class="green">Interes: </span>Rješavanje problema intuitivnim načinima, kao i realizaciju novih, zanimljivih i prije svega, korisnih ideja. Projekti koji zahtjevaju kombinaciju čiste logike, analize, implementaciju niskog i srednjeg nivoa sistema kao i korisnički-orijentisanog dizajna<br><br>
-                <span class="green">Potražnja: </span>prilike za praksu, privatne projekte ili mlađu poziciju u kojim je neminovan stalni progres i rast oblasti softverskog razvoja i sistemskog pristupa
-            </p>
-            <img src="assets/MainMaterial/Moja1.jpg" alt="Samer Kolasević">
-        </div>
-    </section>
-
+    <!-- ============== STACK ============== -->
     <div class="headingContainer" id="stack">
         <img src="assets/Icons/Tools.png" alt="">
-        <h2>Technical stack</h2>
+        <h2>Tehnički stack</h2>
     </div>
     <section class="stack appear">
         <div class="stack-grid">
-            <div class="StackContainer appear">
-                <h3>Primarni stack</h3>
-                <div class="badges">
-                    <span class="tech-badge cpp">C++</span>
-                    <span class="tech-badge cs">.NET C#</span>
-                    <span class="tech-badge maui">.NET MAUI</span>
-                    <span class="tech-badge sql">SQL</span>
-                    <span class="tech-badge uiux">UI/UX (Figma)</span>
-                    <span class="tech-badge git">Git</span>
-                    <span class="tech-badge ecpp">Embedded (C++)</span>
-                    <span class="tech-badge linux">Linux</span>
+
+            <!-- Primarni: collapsible SAMO na mobilnom -->
+            <div class="StackContainer collapsible mobile-only-collapse">
+                <div class="stack-header">
+                    <h3>Primarni stack</h3>
+                    <button class="expand-btn" type="button" aria-label="Proširi/skupi">▼</button>
+                </div>
+                <div class="stack-body">
+                    <div class="badges">
+                        <span class="tech-badge cpp">C++</span>
+                        <span class="tech-badge cs">.NET C#</span>
+                        <span class="tech-badge maui">.NET MAUI</span>
+                        <span class="tech-badge sql">SQL</span>
+                        <span class="tech-badge uiux">UI/UX (Figma)</span>
+                        <span class="tech-badge git">Git</span>
+                        <span class="tech-badge ecpp">Embedded (C++)</span>
+                        <span class="tech-badge linux">Linux</span>
+                    </div>
                 </div>
             </div>
-            
-            <div class="StackContainer appear">
-                <h3>Sekundarni stack</h3>
-                <div class="badges">
-                    <span class="tech-badge c">C</span>
-                    <span class="tech-badge web">HTML + CSS + JS</span>
-                    <span class="tech-badge py">Python</span>
-                    <span class="tech-badge svg">Inkscape (Vektorska grafika)</span>
-                    <span class="tech-badge docker">Docker</span>
-                    <span class="tech-badge ms">MS Office</span>
+
+            <!-- Sekundarni: collapsible SAMO na mobilnom -->
+            <div class="StackContainer collapsible mobile-only-collapse">
+                <div class="stack-header">
+                    <h3>Sekundarni stack</h3>
+                    <button class="expand-btn" type="button" aria-label="Proširi/skupi">▼</button>
+                </div>
+                <div class="stack-body">
+                    <div class="badges">
+                        <span class="tech-badge c">C</span>
+                        <span class="tech-badge web">HTML + CSS + JS</span>
+                        <span class="tech-badge py">Python</span>
+                        <span class="tech-badge svg">Inkscape</span>
+                        <span class="tech-badge docker">Docker</span>
+                        <span class="tech-badge ms">MS Office</span>
+                    </div>
                 </div>
             </div>
-            
-            <div class="StackContainer appear">
+
+            <!-- Teoretski: collapsible UVIJEK (desktop + mobile) -->
+            <div class="StackContainer collapsible always-collapse">
                 <div class="stack-header">
                     <h3>Teoretski stack</h3>
-                    <button class="expand-btn" id="theoryToggleBtn">▼</button>
+                    <button class="expand-btn" type="button" aria-label="Proširi/skupi">▼</button>
                 </div>
-                
-                <div class="theory-content" id="theoryContent">
-                    <p>Pored praktičnih spoznaja, teoretski pokrivam sljedeće oblasti:</p>
+                <div class="stack-body">
+                    <p class="stack-sub">Oblasti koje pokrivam akademski/teoretski:</p>
                     <div class="badges">
                         <span class="tech-badge theory">Data Science</span>
                         <span class="tech-badge theory">Algoritmi</span>
@@ -128,27 +158,35 @@
         </div>
     </section>
 
-    <section class="projekti" id="projekti">
-        <div class="headingContainer">
-            <img src="assets/Icons/Code.png" alt="">
-            <h2>Projekti i radovi</h2>
-            <div class="slider-controls">
-                <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
-                <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
-            </div>
+    <!-- ============== PROJEKTI (SLIDER) ============== -->
+    <div class="headingContainer" id="projekti">
+        <img src="assets/Icons/Code.png" alt="">
+        <h2>Projekti i radovi</h2>
+        <div class="slider-controls">
+            <button class="slider-btn prev-btn" id="prevBtn" aria-label="Prethodni projekat">&#10094;</button>
+            <button class="slider-btn next-btn" id="nextBtn" aria-label="Sljedeći projekat">&#10095;</button>
         </div>
-        
-        <p class="swipe-hint">swipe for next/previous project ↔</p>
-        
+    </div>
+
+    <p class="swipe-hint">swipe za sljedeći / prethodni projekat ↔</p>
+
+    <section class="projekti">
         <div class="slider-wrapper">
             <div class="slider-track-container">
                 <div class="slider-track" id="sliderTrack">
 
-                    <div class="ProjectContainer appear">
+                    <!-- 1. SeharaCloud (samo tekst) -->
+                    <article class="ProjectContainer no-image appear">
                         <div class="TextContainer">
-                            <h3>SeharaCloud - <i>U RAZVOJU</i></h3>
-                            <p class="project-description">Full stack projekat u saradnji sa kolegama <span class="green">Tašić Tajrom</span> i <span class="green">Kolasević Amelom</span>. Sistem treba da obezbjedi prenos različitih formata podataka na mobilnu aplikaciju API pozivima prema bazi podataka <span class="green">(kućni server)</span> te prikaladan prikaz i puštanje istih u zavisnosti od formata</p>
-                            <button class="read-more-btn">Pročitaj više ▼</button>
+                            <h3>SeharaCloud <span class="tag-status">U RAZVOJU</span></h3>
+                            <p class="project-description">
+                                Full-stack projekat u saradnji sa kolegama <span class="green">Tašić Tajrom</span> i
+                                <span class="green">Kolasević Amelom</span>. Sistem obezbjeđuje prenos različitih
+                                formata podataka na mobilnu aplikaciju API pozivima prema bazi podataka
+                                (<span class="green">kućni server</span>), te prikladan prikaz i reprodukciju u
+                                zavisnosti od formata.
+                            </p>
+                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge sql">SQL</span>
@@ -156,57 +194,65 @@
                                 <span class="tech-badge cs">.NET C#</span>
                                 <span class="tech-badge git">Git</span>
                                 <span class="tech-badge theory">Kotlin</span>
-                                <span class="tech-badge theory">UI/UX (Figma)</span>
+                                <span class="tech-badge uiux">UI/UX (Figma)</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/SeharaCloud" target="_blank" title="Github Repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/SeharaCloud" target="_blank" rel="noopener" title="GitHub repozitorij">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_linux-win-linus-ugcPost-7446210307720617984-X50k?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF0-liUBKt19L-giEMNRvYN92p0xg4TTG8A" target="_blank" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_linux-win-linus-ugcPost-7446210307720617984-X50k" target="_blank" rel="noopener" title="LinkedIn objava">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="ProjectContainer appear">
+                    </article>
+
+                    <!-- 2. BORBA (horizontalne / pejzaž slike — grid-vertical, jedan ispod drugog) -->
+                    <article class="ProjectContainer appear">
                         <div class="TextContainer">
-                            <h3>BORBA - TUI igra</h3>
-                            <p class="project-description">BORBA (v1.3) je konzolna igra na poteze (kao stare pokemon igre) napisana u C++ jeziku. Sačinjena od custom header-only biblioteke za animacije, RAII principa, MVC arhitekture koja je na početku bila monolitna i STL biblioteke.</p>
-                            <button class="read-more-btn">Pročitaj više ▼</button>
+                            <h3>BORBA — TUI igra</h3>
+                            <p class="project-description">
+                                BORBA (v1.3) je konzolna igra na poteze (kao stare Pokémon igre) napisana u
+                                <span class="green">C++</span>. Sastoji se od custom <span class="green">header-only</span>
+                                biblioteke za animacije, <span class="green">RAII</span> principa,
+                                <span class="green">MVC</span> arhitekture (početno monolitne) i STL biblioteke.
+                            </p>
+                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge cpp">C++</span>
                                 <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/BORBA-v1.3" target="_blank" title="Github Repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/BORBA-v1.3" target="_blank" rel="noopener" title="GitHub repozitorij">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
-                                <a href="https://github.com/SamerKolasevic29/BORBA-V1.0" target="_blank" title="Github legacy Repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/BORBA-V1.0" target="_blank" rel="noopener" title="GitHub Legacy">
                                     <img src="assets/Icons/githab.png" alt="GitHub Legacy">
                                 </a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-gamedev-ugcPost-7431345320569192449-kwdS" target="_blank" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-gamedev-ugcPost-7431345320569192449-kwdS" target="_blank" rel="noopener" title="LinkedIn objava">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
                             </div>
                         </div>
                         <div class="ImageContainer grid-vertical">
-                            <img src="assets/MainMaterial/Borba.webp" alt="Borba igra">
+                            <img src="assets/MainMaterial/Borba.webp" alt="Borba — screenshot">
                             <video src="assets/MainMaterial/Borba2.mp4" autoplay loop muted playsinline></video>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="ProjectContainer appear">
+                    <!-- 3. TiltControl (vertikalne / portret slike — mini slider) -->
+                    <article class="ProjectContainer appear">
                         <div class="TextContainer">
-                            <h3>TiltControl - višenamjenski projekat</h3>
+                            <h3>TiltControl — višenamjenski projekat</h3>
                             <p class="project-description">
-                                Mobilna aplikacija u fokusu očitavanja vrijednosti sa akcelerometra sa namjenama u:<br>
+                                Mobilna aplikacija u fokusu očitavanja vrijednosti sa <span class="green">akcelerometra</span>,
+                                sa namjenama u:<br>
                                 <span class="bullet">•</span> Okruženju za manipulaciju objekta (kretanje, veličina, brzina) u stvarnom vremenu<br>
-                                <span class="bullet">•</span> Engine-u koji definiše sudar sa ostalim objektima tokom pokreta (Igre sa nagibom telefona)<br>
+                                <span class="bullet">•</span> Engine-u koji definiše sudar sa ostalim objektima tokom pokreta (igre sa nagibom telefona)<br>
                                 <span class="bullet">•</span> Univerzalnom kontroleru uređaja sa filtriranjem i mapiranjem u svoj format<br>
                             </p>
-                            <button class="read-more-btn">Pročitaj više ▼</button>
+                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge cs">.NET C#</span>
@@ -215,15 +261,15 @@
                                 <span class="tech-badge ecpp">Embedded (C++)</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/TiltControl" target="_blank" title="Github Repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/TiltControl" target="_blank" rel="noopener" title="GitHub repozitorij">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415775892251316224/" target="_blank" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415775892251316224/" target="_blank" rel="noopener" title="LinkedIn objava">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
                             </div>
                         </div>
-                        <div class="ImageContainer mini-slider-container">
+                        <div class="ImageContainer mini-slider-container portrait">
                             <div class="m-slide active">
                                 <img src="assets/MainMaterial/BiggerSmaller.gif" alt="Bigger Smaller">
                             </div>
@@ -235,17 +281,25 @@
                                 <img src="assets/MainMaterial/Controller.gif" alt="Controller">
                             </div>
                             <div class="m-slider-controls">
-                                <button class="m-btn m-prev">&#10094;</button>
-                                <button class="m-btn m-next">&#10095;</button>
+                                <button class="m-btn m-prev" aria-label="Prethodna slika">&#10094;</button>
+                                <span class="m-dots" aria-hidden="true"></span>
+                                <button class="m-btn m-next" aria-label="Sljedeća slika">&#10095;</button>
                             </div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="ProjectContainer appear">
+                    <!-- 4. RBAC (horizontalne — grid-vertical) -->
+                    <article class="ProjectContainer appear">
                         <div class="TextContainer">
-                            <h3>RBAC-SYS - Admin vs Worker</h3>
-                            <p class="project-description">Implementiran terminalni sistem po RBAC principu kojem je glavni zadatak separacija pristupa i mogućnosti po ulogama. Neke od mogućnosti su ostavljanje log traga za određene akcije, uređivanje ciljanog fajla putem konstruisianog editora sličnom Vim-u ili nano naredbi na Linuxu. Ponovna upotreba sopstvenih biblioteka je također ključan dio.</p>
-                            <button class="read-more-btn">Pročitaj više ▼</button>
+                            <h3>RBAC-SYS — Admin vs Worker</h3>
+                            <p class="project-description">
+                                Implementiran terminalni sistem po <span class="green">RBAC</span> principu kojem je
+                                glavni zadatak separacija pristupa i mogućnosti po ulogama. Neke od mogućnosti su
+                                ostavljanje log traga za određene akcije, uređivanje ciljanog fajla putem konstruisanog
+                                editora sličnom <span class="green">Vim</span>-u ili <span class="green">nano</span> naredbi
+                                na Linuxu. Ponovna upotreba sopstvenih biblioteka je također ključan dio.
+                            </p>
+                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge cpp">C++</span>
@@ -253,145 +307,209 @@
                                 <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/RBACimplementation" target="_blank" title="Github Repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/RBACimplementation" target="_blank" rel="noopener" title="GitHub repozitorij">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-cybersecurity-ugcPost-7444677986198609920-lxef" target="_blank" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-cybersecurity-ugcPost-7444677986198609920-lxef" target="_blank" rel="noopener" title="LinkedIn objava">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_during-the-reuse-of-my-custom-animationh-ugcPost-7443298048321032194-ngeW" target="_blank" title="LinkedIn article">
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_during-the-reuse-of-my-custom-animationh-ugcPost-7443298048321032194-ngeW" target="_blank" rel="noopener" title="LinkedIn article">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn Article">
                                 </a>
                             </div>
                         </div>
                         <div class="ImageContainer grid-vertical">
-                            <img src="assets/MainMaterial/RBAC.webp" alt="">
-                            <img src="assets/MainMaterial/RBAC2.webp" alt="">
+                            <img src="assets/MainMaterial/RBAC.webp" alt="RBAC 1">
+                            <img src="assets/MainMaterial/RBAC2.webp" alt="RBAC 2">
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="ProjectContainer appear">
+                    <!-- 5. Grafički prijedlozi (vertikalne — mini slider portrait) -->
+                    <article class="ProjectContainer appear">
                         <div class="TextContainer">
                             <h3>Mnoštvo grafičkih prijedloga</h3>
-                            <p class="project-description"> Na predmetima vezanim za grafiku i općenito dizajn razvio sam vještinu sistematske podjele potrebnih stavki i komponenti u projektima, sama pravila UI/UX oblasti, te konstantnim radom i znatiželjom razvio sam malo osjećaja za kreiranje grafičkih rješenja po pitanju reklamnih postera, vizit kartica, kao i kompletnih wireframe rješenja za aplikacije. Cjelokupan nivo znanja iz istog mi dobro dođe kao još jedan alat na švicarskom nožu.</p>
-                            <button class="read-more-btn">Pročitaj više ▼</button>
+                            <p class="project-description">
+                                Na predmetima vezanim za grafiku i općenito dizajn razvio sam vještinu sistematske
+                                podjele potrebnih stavki i komponenti u projektima, sama pravila
+                                <span class="green">UI/UX</span> oblasti, te konstantnim radom i znatiželjom razvio sam
+                                osjećaj za grafička rješenja po pitanju reklamnih postera, vizit kartica, kao i kompletnih
+                                <span class="green">wireframe</span> rješenja za aplikacije. Cjelokupan nivo znanja iz
+                                istog mi dobro dođe kao još jedan alat na švicarskom nožu.
+                            </p>
+                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge uiux">UI/UX (Figma)</span>
                                 <span class="tech-badge svg">Inkscape</span>
                             </div>
                         </div>
-                        <div class="ImageContainer mini-slider-container">
+                        <div class="ImageContainer mini-slider-container portrait">
                             <div class="m-slide active">
-                                <img src="assets/MainMaterial/IziPizi1.png" alt="">
+                                <img src="assets/MainMaterial/IziPizi1.png" alt="IziPizi 1">
                             </div>
                             <div class="m-slide">
-                                <img src="assets/MainMaterial/IziPizi2.png" alt="">
+                                <img src="assets/MainMaterial/IziPizi2.png" alt="IziPizi 2">
                             </div>
                             <div class="m-slide double">
-                                <img src="assets/MainMaterial/Brosura.png" alt="">
-                                <img src="assets/MainMaterial/Vizitka.png" alt="">
+                                <img src="assets/MainMaterial/Brosura.png" alt="Brošura">
+                                <img src="assets/MainMaterial/Vizitka.png" alt="Vizit karta">
                             </div>
                             <div class="m-slider-controls">
-                                <button class="m-btn m-prev">&#10094;</button>
-                                <button class="m-btn m-next">&#10095;</button>
+                                <button class="m-btn m-prev" aria-label="Prethodna slika">&#10094;</button>
+                                <span class="m-dots" aria-hidden="true"></span>
+                                <button class="m-btn m-next" aria-label="Sljedeća slika">&#10095;</button>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="ProjectContainer appear">
+                    </article>
+
+                    <!-- 6. MyCV -->
+                    <article class="ProjectContainer no-image appear">
                         <div class="TextContainer">
                             <h3>MyCV</h3>
-                            <p class="project-description">Statička web stranica koja na prikladan način oponaša CV papir u modernom vremenu. Sadrži sve potrebne podatke o mojoj malenkosti, projektima, tzv. 'soft skills' i posjeduje elegantan dizajn koji naginje ka 'glassmorphism' stilu. Tokom razvoja projekata i nekih dodatnih epoha u životu, stranica će biti onda i ažurnog karaktera gdje će sve biti 'up-to date'<br><br>
-                            <span class="bullet">•</span> Napravljena u HTML + CSS + JS komninaciji<br>
-                            <span class="bullet">•</span> Za prikaz na internetu koristi GitHub Pages<br>
+                            <p class="project-description">
+                                Statička web stranica koja na prikladan način oponaša CV papir u modernom vremenu.
+                                Sadrži sve potrebne podatke, projekte i tzv. <span class="green">soft skills</span>,
+                                uz elegantan dizajn koji naginje <span class="green">glassmorphism</span> stilu.
+                                Stranica je živa i bit će redovno ažurirana.<br><br>
+                                <span class="bullet">•</span> HTML + CSS + JS<br>
+                                <span class="bullet">•</span> Hostano na GitHub Pages, custom domena <span class="green">samer.kolasevic.com</span><br>
                             </p>
-                            <button class="read-more-btn">Pročitaj više ▼</button>
+                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
                             <p class="tech-naslov">Korištene tehnologije:</p>
                             <div class="badges">
                                 <span class="tech-badge web">HTML + CSS + JS</span>
                                 <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/MyCV" target="_blank" title="Github Repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/MyCV" target="_blank" rel="noopener" title="GitHub repozitorij">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    
+                    </article>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="headingContainer" id="viseOMeni">
-        <img src="assets/Icons/More.png" alt="">
-        <div class="title-wrap">
-            <h2>Više o meni</h2>
-            <span class="hint-text desktop-hint">Hover to expand</span>
-            <span class="hint-text mobile-hint">Tap to expand</span>
-        </div>
+    <!-- ============== ČLANCI / PUBLIKACIJE ============== -->
+    <div class="headingContainer" id="clanci">
+        <img src="assets/Icons/Code.png" alt="">
+        <h2>Članci i publikacije</h2>
     </div>
-    <section class="viseOMeni appear" style="overflow: visible;">  
+    <section class="clanci appear">
+        <div class="articles-split">
+
+            <!-- Lijevo: lista članaka (placeholder — Samer mijenja ručno) -->
+            <aside class="article-list" aria-label="Lista članaka">
+                
+
+                <a href="#" class="article-link"
+                   data-pdf="assets/Articles/DotnetArticle.pdf">
+                    <div class="article-meta">
+                        <span class="article-tag">Članak</span>
+                    </div>
+                    <h3 class="article-title">IQueryable vs IEnumerable vs List</h3>
+                    <p class="article-desc">Članak inspirisan tokom razrade ASP.NET Core Web API-a</p>
+                </a>
+
+                <a href="#" class="article-link active-article"
+                   data-pdf="assets/Articles/SeharaArticle.pdf">
+                    <div class="article-meta">
+                        <span class="article-tag">Prezentacija</span>
+                    </div>
+                    <h3 class="article-title">SeharaCloud - Backend arhitektura</h3>
+                    <p class="article-desc">Prezentacija koja je bila na predavanju 1. godini Softverskog Inženjerstva na Univerzitetu u Zenici</p>
+                </a>
+            </aside>
+
+            <!-- Desno: PDF preglednik -->
+            <div class="article-viewer">
+                <div class="viewer-toolbar">
+                    <span class="viewer-dot"></span>
+                    <span class="viewer-dot"></span>
+                    <span class="viewer-dot"></span>
+                    <span class="viewer-path" id="viewerPath">assets/Articles/SeharaArticle.pdf</span>
+                    <a class="viewer-open-ext" id="viewerOpenExt"
+                       href="assets/Articles/SeharaArticle.pdf" target="_blank" rel="noopener"
+                       title="Otvori u novom tabu">↗</a>
+                </div>
+                <iframe id="pdfViewer"
+                        src="assets/Articles/SeharaArticle.pdf"
+                        title="PDF preglednik članka"
+                        loading="lazy"></iframe>
+                <p class="viewer-mobile-hint">
+                    Tap na članak otvara PDF u novom tabu (optimizirano za mobilne uređaje).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== VIŠE O MENI ============== -->
+    <div class="headingContainer" id="oMeni">
+        <img src="assets/Icons/Person.png" alt="">
+        <h2>Više o meni</h2>
+    </div>
+    <section class="viseOMeni appear">
         <div class="cards-container">
+
             <div class="vise-card">
-                <div class="card-front">
+                <div class="vise-head">
                     <img class="ico" src="assets/Icons/Education.png" alt="">
                     <h3>Obrazovanje</h3>
                 </div>
-                <div class="card-popup">
-                    <img src="assets/MainMaterial/msts.jpeg" alt="Obrazovanje slika" class="popup-img">
-                    <p>Pohađao Osnovnu Školu "Travnik" u Travniku kao i Mješovitu Srednju Tehničku školu "Travnik", smjer Računarstvo i informatika. Odličan uspjeh, <u>kao srednjoškolcu uručena nagrada učenika generacije.</u></p>
-                </div>
+                <img src="assets/MainMaterial/msts.jpeg" alt="" class="card-img">
+                <p>Osnovna škola „Travnik“ i Mješovita srednja tehnička škola „Travnik“ — smjer Računarstvo i informatika.
+                Odličan uspjeh, <u>nagrada učenika generacije srednje škole</u>. Trenutno 2. godina Softverskog inženjerstva, UNZE.</p>
             </div>
 
             <div class="vise-card">
-                <div class="card-front">
+                <div class="vise-head">
                     <img class="ico" src="assets/Icons/Target.png" alt="">
                     <h3>Sport</h3>
                 </div>
-                <div class="card-popup">
-                    <img src="assets/MainMaterial/Moja2.jpg" alt="Sport slika" class="popup-img">
-                    <p>6 godina bavljenja streljaštvom olimpijske discipline (Vazdušna puška 10m). Pored brojnih uspjeha, <u>najveći uspjeh je kao prvak Federacije BiH u kategoriji seniora i nosilac rekorda.</u></p>
-                </div>
+                <img src="assets/MainMaterial/Moja2.jpg" alt="" class="card-img">
+                <p>Šest godina streljaštva u olimpijskoj disciplini (vazdušna puška 10 m).
+                <u>Prvak Federacije BiH u kategoriji seniora i nosilac rekorda.</u></p>
             </div>
 
             <div class="vise-card">
-                <div class="card-front">
+                <div class="vise-head">
                     <img class="ico" src="assets/Icons/Muscle.png" alt="">
-                    <h3>Izbor motivacije</h3>
+                    <h3>Motivacija</h3>
                 </div>
-                <div class="card-popup">
-                    <img src="assets/MainMaterial/bookshelf.jpeg" alt="Motivacija slika" class="popup-img">
-                    <p>Konstantno učenje novih tehnologija, fizički trening i disciplina. U kombinaciji sa svim tim je razvoj softvera u publici i angažovanje u društvu (redovni darivatelj krvi).</p>
-                </div>
+                <img src="assets/MainMaterial/bookshelf.jpeg" alt="" class="card-img">
+                <p>Kontinuirano učenje novih tehnologija, fizička disciplina i angažman u zajednici
+                (redovni dobrovoljni davalac krvi).</p>
             </div>
+
         </div>
     </section>
 
-    <div class="headingContainer" id="kontakt">
-        <img src="assets/Icons/Contact.png" alt="">
-        <h2>Kontakt i poveznice</h2>
-    </div>
-    <footer class="footer-glass">
+    <!-- ============== FOOTER ============== -->
+    <footer class="footer-glass" id="kontakt">
         <div class="footer-content">
-            <a href="https://www.linkedin.com/in/samer-kolasevi%C4%87-119aaa377/" class="footer-link" target="_blank">
+            <a href="https://www.linkedin.com/in/samer-kolasevi%C4%87-119aaa377/" class="footer-link" target="_blank" rel="noopener">
                 <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                 <span>LinkedIn</span>
             </a>
-            <a href="https://github.com/SamerKolasevic29" class="footer-link" target="_blank">
+            <a href="https://github.com/SamerKolasevic29" class="footer-link" target="_blank" rel="noopener">
                 <img src="assets/Icons/githab.png" alt="GitHub">
                 <span>GitHub</span>
             </a>
-            <a href="mailto:Samer.kolasevic.24@size.ba" class="footer-link email-link">
+            <a href="/cdn-cgi/l/email-protection#5d0e3c30382f733632313c2e382b343e736f691d2e342738733f3c" class="footer-link email-link">
                 <img src="assets/Icons/Gmail.png" alt="Email">
-                <span>Samer.kolasevic.24@size.ba</span>
+                <span><span class="__cf_email__" data-cfemail="94c7f5f9f1e6bafffbf8f5e7f1e2fdf7baa6a0d4e7fdeef1baf6f5">[email&#160;protected]</span></span>
+            </a>
+            <a href="assets/Documents/SamerKolasevicCV.pdf" class="footer-link" download>
+                <img src="assets/Icons/Person.png" alt="CV">
+                <span>Europass CV</span>
             </a>
         </div>
-        <p class="copyright">© 2026 Samer Kolasević. Sva prava pridržana.</p>
+        <p class="copyright">© 2026 Samer Kolasević · <a href="https://www.samer.kolasevic.com/" style="color:#00EBB9; text-decoration:none;">samer.kolasevic.com</a> · Sva prava pridržana.</p>
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0561dca7970d93d',t:'MTc4MDM5OTcyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a059d44cca5c684a',t:'MTc4MDQzODY1OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
