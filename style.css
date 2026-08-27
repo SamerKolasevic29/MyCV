@@ -6,7 +6,7 @@
     --accent-soft:   rgba(0, 235, 185, 0.18);
     --accent-line:   rgba(0, 235, 185, 0.35);
     --bg:            #000000;
-    --bg-panel:      rgba(20, 22, 24, 0.55);
+    --bg-panel:      rgba(15, 18, 20, 0.85);
     --border:        rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.14);
     --text:          #e7e9ea;
@@ -18,7 +18,7 @@
 }
 
 /* =========================================
-   1. RESET / BASE
+   1. RESET / BASE (PERFORMANCE OPTIMIZED)
    ========================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -35,13 +35,20 @@ body {
     color: var(--text);
     padding: 0 20px 60px;
     padding-top: calc(var(--nav-h) + 24px);
+    background-color: #000;
+}
 
-    /* Ambijentalna pozadina — tamnija, smirenija; brži prelaz u crnu */
+/* GPU-accelerated fixed pozadina - sprječava lag pri skrolu */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    pointer-events: none;
     background:
-        radial-gradient(circle at 50% -10%, rgba(0, 90, 70, 0.55) 0%, rgba(0, 30, 25, 0.35) 44%, rgba(0,0,0,0) 70%),
-        radial-gradient(circle at 80% 110%, rgba(0, 60, 50, 0.35) 0%, rgba(0,0,0,0) 45%),
+        radial-gradient(circle at 50% -10%, rgba(0, 90, 70, 0.45) 0%, rgba(0, 30, 25, 0.25) 44%, rgba(0,0,0,0) 70%),
+        radial-gradient(circle at 80% 110%, rgba(0, 60, 50, 0.25) 0%, rgba(0,0,0,0) 45%),
         #000;
-    background-attachment: fixed;
 }
 
 :where(section, header, footer, .headingContainer) { scroll-margin-top: calc(var(--nav-h) + 16px); }
@@ -49,21 +56,21 @@ body {
 .accent, .green { color: var(--accent); font-weight: 600; }
 
 /* =========================================
-   2. NAVBAR
+   2. NAVBAR & LANG BUTTON
    ========================================= */
 .navbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     display: flex; justify-content: space-between; align-items: center;
     height: var(--nav-h);
     padding: 0 clamp(20px, 5vw, 60px);
-    background: rgba(8, 12, 11, 0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(8, 12, 11, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 .navbar.scrolled {
-    background: rgba(6, 10, 9, 0.92);
+    background: rgba(6, 10, 9, 0.95);
     border-bottom-color: var(--accent-line);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
@@ -73,7 +80,7 @@ body {
     border: 1px solid var(--accent-line);
     padding: 4px 10px; border-radius: 8px;
 }
-.nav-links { display: flex; list-style: none; gap: clamp(18px, 3.5vw, 40px); }
+.nav-links { display: flex; list-style: none; gap: clamp(14px, 3vw, 36px); }
 .nav-links a {
     color: var(--text); text-decoration: none;
     font-size: 14px; font-weight: 500;
@@ -87,6 +94,34 @@ body {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--accent-line);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.lang-btn:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+.lang-icon { font-size: 14px; }
+
 .nav-toggle {
     display: none; background: transparent; border: none;
     color: var(--accent); font-size: 26px; cursor: pointer;
@@ -102,8 +137,8 @@ body {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: linear-gradient(180deg, rgba(0, 235, 185, 0.04) 0%, rgba(0,0,0,0.35) 100%);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 .hero-inner { max-width: 820px; }
 
@@ -122,17 +157,17 @@ body {
 .hero-title {
     color: var(--accent);
     font-size: clamp(16px, 2.2vw, 22px);
-    margin-top: 6px;           /* malen razmak ime <-> titula */
+    margin-top: 6px;
 }
 .hero-bio {
     color: var(--text-dim);
     font-size: clamp(14px, 1.6vw, 17px);
-    margin-top: 32px;          /* veci razmak od para naslova */
+    margin-top: 32px;
     max-width: 640px;
 }
 
 .hero-cta {
-    margin-top: 48px;          /* veci razmak od bio teksta — dugmad jasno odvojena */
+    margin-top: 48px;
     display: flex; flex-wrap: wrap; gap: 14px;
 }
 
@@ -171,8 +206,8 @@ section {
     margin: 0 auto clamp(60px, 8vw, 100px);
     padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 32px);
     background: var(--bg-panel);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
@@ -194,7 +229,7 @@ section {
 }
 
 /* =========================================
-   5. STACK
+   5. STACK (HR FRIENDLY LAYOUT)
    ========================================= */
 .stack-grid {
     display: grid;
@@ -212,21 +247,63 @@ section {
 .StackContainer h3 {
     color: #fff;
     font-size: clamp(16px, 1.5vw, 19px);
-    margin: 0;
+    margin: 2px 0 10px 0;
 }
 .stack-sub { color: var(--text-dim); font-size: 13px; margin-bottom: 12px; }
 
-/* === Collapsible stack paneli ===
-   - .always-collapse       -> uvijek collapsible (Teoretski), pocetno SKLOPLJEN
-   - .mobile-only-collapse  -> samo na mobilnom (Primarni, Sekundarni),
-                               pocetno otvoren na mobilnom; na desktopu uvijek otvoren
-*/
+.role-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+.primary-tag {
+    color: var(--accent);
+    border: 1px solid var(--accent-line);
+    background: var(--accent-soft);
+}
+.secondary-tag {
+    color: #71e0ff;
+    border: 1px solid rgba(113, 224, 255, 0.4);
+    background: rgba(0, 103, 131, 0.2);
+}
+.academic-tag {
+    color: #bdbdbd;
+    border: 1px solid rgba(189, 189, 189, 0.3);
+    background: rgba(69, 69, 69, 0.3);
+}
+
+.stack-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 70px 0;
+}
+.stack-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: clamp(13px, 1.2vw, 14.5px);
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+.stack-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 14px;
+}
+
 .stack-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 .expand-btn {
     background: none;
@@ -236,7 +313,7 @@ section {
     border-radius: 8px;
     font-size: 12px;
     cursor: pointer;
-    display: none;             /* sakriven po defaultu — vidljiv samo gdje treba */
+    display: none;
     align-items: center;
     justify-content: center;
     transition: transform .35s ease, background .2s ease;
@@ -256,17 +333,15 @@ section {
 }
 .collapsible.is-collapsed .stack-header { margin-bottom: 0; }
 
-/* Desktop: collapse button prikazan SAMO za Teoretski */
 .always-collapse .expand-btn { display: inline-flex; }
 .always-collapse .stack-header { cursor: pointer; }
 
 .badges { display: flex; flex-wrap: wrap; gap: clamp(8px, 1.2vw, 12px); }
 
-/* === Bedževi: vraćamo unikatne boje (skladne, profesionalne — ali prepoznatljive) === */
 .tech-badge {
     display: inline-flex; align-items: center; justify-content: center;
     border-radius: 8px;
-    font-size: clamp(12px, 1.3vw, 15px);
+    font-size: clamp(12px, 1.3vw, 14px);
     font-weight: 600;
     padding: 5px 12px;
     letter-spacing: 0.2px;
@@ -286,17 +361,8 @@ section {
 .py            { border-color: rgb(251, 255, 202); background-color: rgba(195, 185, 0, 0.55);   color: rgb(252, 255, 220); }
 .theory        { border-color: rgb(189, 189, 189); background-color: rgba(69, 69, 69, 0.6);     color: rgb(220, 220, 220); }
 
-/* Projektni bedževi — tanji okvir, manji font (bez gubitka boje) */
-.ProjectContainer .tech-badge {
-    font-size: clamp(11px, 1.05vw, 13px);
-    padding: 3px 10px;
-    border-width: 2px;
-    border-radius: 6px;
-}
-.ProjectContainer .badges { gap: 8px; margin: 8px 0 12px 0; }
-
 /* =========================================
-   6. PROJEKTI — slider
+   6. PROJEKTI — SLIDER
    ========================================= */
 section.projekti {
     background: transparent;
@@ -364,8 +430,8 @@ section.projekti {
 
 .ProjectContainer {
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border);
     padding: clamp(22px, 3.5vw, 36px);
@@ -395,7 +461,6 @@ section.projekti {
     padding: 2px 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-style: normal;
 }
 .TextContainer p,
 .project-description {
@@ -428,22 +493,18 @@ section.projekti {
 .pro-links a {
     display: inline-flex; align-items: center; justify-content: center;
     text-decoration: none;
-    transition: transform .25s ease, filter .25s ease;
+    transition: transform .25s ease;
 }
 .pro-links a img {
     width: clamp(24px, 2.4vw, 28px);
     height: clamp(24px, 2.4vw, 28px);
     object-fit: contain;
     opacity: 0.85;
-    transition: opacity .2s ease, filter .25s ease;
+    transition: opacity .2s ease;
 }
 .pro-links a:hover { transform: translateY(-3px) scale(1.1); }
-.pro-links a:hover img {
-    opacity: 1;
-    filter: drop-shadow(0 4px 10px rgba(0, 235, 185, 0.4));
-}
+.pro-links a:hover img { opacity: 1; }
 
-/* === Image Containers === */
 .ImageContainer {
     flex: 1 1 320px;
     display: flex;
@@ -451,7 +512,6 @@ section.projekti {
     align-items: center;
 }
 
-/* Landscape (horizontalne slike) — pune sirinu, jedna ispod druge */
 .ImageContainer.grid-vertical {
     flex-direction: column;
     gap: 14px;
@@ -466,9 +526,7 @@ section.projekti {
     border: 1px solid var(--border);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
-.ImageContainer.grid-vertical > video { background: #000; }
 
-/* === Mini slider (vertikalne / portrait slike — TiltControl, grafika) === */
 .mini-slider-container {
     display: flex;
     flex-direction: column;
@@ -496,16 +554,9 @@ section.projekti {
 }
 .m-slide.double img { max-width: 48%; }
 
-/* Portrait varijanta — fiksiramo visinu da slike ne razvlace karticu */
-.mini-slider-container.portrait .m-slide {
-    min-height: 360px;
-}
-.mini-slider-container.portrait .m-slide img {
-    max-height: 360px;
-}
-.mini-slider-container.portrait .m-slide.double img {
-    max-height: 320px;
-}
+.mini-slider-container.portrait .m-slide { min-height: 360px; }
+.mini-slider-container.portrait .m-slide img { max-height: 360px; }
+.mini-slider-container.portrait .m-slide.double img { max-height: 320px; }
 
 .m-slider-controls {
     margin-top: 18px;
@@ -528,24 +579,127 @@ section.projekti {
     transition: background .2s ease, transform .2s ease;
 }
 .m-btn:hover { background: var(--accent-soft); transform: scale(1.08); }
-.m-dots {
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-}
+.m-dots { display: inline-flex; gap: 6px; align-items: center; }
 .m-dots .dot {
     width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--border-strong);
     transition: background .2s ease, transform .2s ease;
 }
-.m-dots .dot.active {
+.m-dots .dot.active { background: var(--accent); transform: scale(1.4); }
+
+/* =========================================
+   7. HOMELABBING SEKCIJA
+   ========================================= */
+.homelab-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(20px, 3.5vw, 32px);
+}
+.homelab-header h3 {
+    color: var(--accent);
+    font-size: clamp(18px, 2vw, 24px);
+    margin-bottom: 30px;
+}
+.homelab-desc {
+    color: var(--text-dim);
+    font-size: clamp(13.5px, 1.3vw, 15px);
+    line-height: 1.65;
+    margin-bottom: 24px;
+}
+.homelab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+    margin-bottom: 24px;
+}
+.homelab-box {
+    background: rgba(15, 20, 22, 0.6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+.box-icon { font-size: 24px; display: block; margin-bottom: 8px; }
+.homelab-box h4 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.homelab-box p {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+.domain-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.domain-chip {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0, 235, 185, 0.08);
+    border: 1px solid var(--accent-line);
+    border-radius: 8px;
+    color: var(--accent);
+    font-size: 12.5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.domain-chip:hover {
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+}
+.homelab-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.homelab-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+.homelab-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 16px;
+}
+.homelab-collab {
+    background: linear-gradient(135deg, rgba(0, 235, 185, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.collab-badge {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 4px;
     background: var(--accent);
-    transform: scale(1.4);
+    color: #000;
+}
+.homelab-collab p {
+    color: var(--text);
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* =========================================
-   7. ČLANCI — SPLIT-PANE
+   8. ČLANCI — SPLIT PANE
    ========================================= */
 .articles-split {
     display: grid;
@@ -560,9 +714,6 @@ section.projekti {
     overflow-y: auto;
     padding-right: 4px;
 }
-.article-list::-webkit-scrollbar { width: 6px; }
-.article-list::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
-
 .article-link {
     display: block;
     text-decoration: none;
@@ -571,19 +722,16 @@ section.projekti {
     border: 1px solid var(--border);
     border-radius: 12px;
     background: rgba(0, 0, 0, 0.35);
-    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    transition: border-color .2s ease, background .2s ease;
 }
 .article-link:hover {
     border-color: var(--accent-line);
     background: rgba(0, 235, 185, 0.06);
-    transform: translateX(2px);
 }
 .article-link.active-article {
     border-color: var(--accent);
     background: var(--accent-soft);
 }
-
-.article-meta { margin-bottom: 6px; }
 .article-tag {
     display: inline-block;
     color: var(--accent);
@@ -599,7 +747,6 @@ section.projekti {
     font-size: 15px;
     font-weight: 600;
     margin: 6px 0;
-    line-height: 1.35;
 }
 .article-desc {
     color: var(--text-dim);
@@ -607,7 +754,6 @@ section.projekti {
     line-height: 1.5;
     margin: 0;
 }
-
 .article-viewer {
     display: flex; flex-direction: column;
     border: 1px solid var(--border);
@@ -633,25 +779,18 @@ section.projekti {
 }
 .viewer-open-ext {
     color: var(--accent); text-decoration: none;
-    font-size: 16px;
-    padding: 2px 8px;
+    font-size: 16px; padding: 2px 8px;
     border: 1px solid var(--accent-line);
     border-radius: 6px;
-    transition: background .2s ease;
 }
-.viewer-open-ext:hover { background: var(--accent-soft); }
-
 #pdfViewer {
-    width: 100%;
-    flex: 1;
-    min-height: 600px;
-    border: none;
-    background: #1a1d1f;
+    width: 100%; flex: 1; min-height: 600px;
+    border: none; background: #1a1d1f;
 }
 .viewer-mobile-hint { display: none; }
 
 /* =========================================
-   8. VIŠE O MENI — statične kartice
+   9. VIŠE O MENI & FOOTER
    ========================================= */
 .cards-container {
     display: grid;
@@ -664,63 +803,31 @@ section.projekti {
     border-radius: var(--radius);
     padding: 22px 22px 24px;
     display: flex; flex-direction: column;
-    text-align: left;
-    transition: border-color .2s ease;
 }
-.vise-card:hover { border-color: var(--accent-line); }
-
-/* Ikonica i naslov u istom redu */
 .vise-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
 }
-.vise-card .ico {
-    width: 34px; height: 34px;
-    opacity: 0.95;
-    flex-shrink: 0;
-}
-.vise-card h3 {
-    color: #fff;
-    font-size: 17px;
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.2;
-}
+.vise-card .ico { width: 34px; height: 34px; opacity: 0.95; }
+.vise-card h3 { color: #fff; font-size: 17px; font-weight: 600; margin: 0; }
 .vise-card .card-img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    margin-bottom: 14px;
+    width: 100%; height: 140px; object-fit: cover;
+    border-radius: 10px; border: 1px solid var(--border); margin-bottom: 14px;
 }
-.vise-card p {
-    color: var(--text-dim);
-    font-size: 13.5px;
-    line-height: 1.6;
-}
+.vise-card p { color: var(--text-dim); font-size: 13.5px; line-height: 1.6; }
 
-/* =========================================
-   9. FOOTER
-   ========================================= */
 .footer-glass {
-    max-width: 1100px;
-    margin: 0 auto 40px;
-    background-color: rgba(8, 10, 11, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    max-width: 1100px; margin: 0 auto 40px;
+    background-color: rgba(8, 10, 11, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: var(--radius-lg);
     padding: clamp(28px, 4vw, 44px);
     border: 1px solid var(--border);
     text-align: center;
 }
 .footer-content {
-    display: flex; flex-wrap: wrap;
-    justify-content: center; align-items: center;
-    gap: 14px;
-    margin-bottom: 24px;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    gap: 14px; margin-bottom: 24px;
 }
 .footer-link {
     display: inline-flex; align-items: center; gap: 10px;
@@ -732,115 +839,53 @@ section.projekti {
     transition: border-color .2s ease, background .2s ease, color .2s ease;
 }
 .footer-link:hover {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-    color: var(--accent);
+    border-color: var(--accent); background: var(--accent-soft); color: var(--accent);
 }
 .footer-link img { width: 22px; height: 22px; object-fit: contain; }
 .footer-link span { font-size: 13px; font-weight: 500; }
 .copyright {
-    color: var(--text-faint);
-    font-size: 12px;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
+    color: var(--text-faint); font-size: 12px; margin-top: 16px;
+    padding-top: 16px; border-top: 1px solid var(--border);
 }
 
-/* =========================================
-   10. ANIMACIJE (suptilne)
-   ========================================= */
 .appear {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 0; transform: translateY(20px);
     transition: opacity .6s ease, transform .6s ease;
 }
 .appear.visible { opacity: 1; transform: translateY(0); }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* =========================================
-   11. MEDIA QUERIES
+   10. MEDIA QUERIES (RESPONSIVE)
    ========================================= */
 @media (max-width: 960px) {
     .articles-split { grid-template-columns: 1fr; }
-    .article-list   { max-height: none; }
     .article-viewer { display: none; }
-    .viewer-mobile-hint {
-        display: block;
-        color: var(--text-faint);
-        font-size: 12px;
-        margin-top: 8px;
-        text-align: center;
-    }
+    .viewer-mobile-hint { display: block; color: var(--text-faint); font-size: 12px; margin-top: 8px; text-align: center; }
     .cards-container { grid-template-columns: 1fr; }
     .stack-grid { grid-template-columns: 1fr; }
     .stack-grid .StackContainer:nth-child(3) { grid-column: span 1; }
 }
 
-/* === Projektne kartice bez slika (.no-image) ===
-   Desktop: tekst centriran u uzem stupcu (kartica ne djeluje prazna).
-   Mobile:  kompaktan padding + suptilan zeleni indikator gore desno. */
-.ProjectContainer.no-image .TextContainer {
-    flex: 1 1 100%;
-    max-width: 720px;
-    margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-    .ProjectContainer.no-image {
-        position: relative;
-        padding: 18px 18px 22px !important;
-    }
-    .ProjectContainer.no-image .project-description {
-        margin-bottom: 6px;
-    }
-    /* Suptilna oznaka "tekstualni projekat" — diskretna, ne bode oci */
-    .ProjectContainer.no-image::before {
-        content: '◌';
-        position: absolute;
-        top: 14px;
-        right: 18px;
-        color: var(--accent);
-        opacity: 0.4;
-        font-size: 14px;
-    }
-}
-
 @media (max-width: 768px) {
     body { padding-top: calc(var(--nav-h) + 12px); }
-
-    /* Mobile: prikazi expand dugme i za primarni/sekundarni stack */
     .mobile-only-collapse .expand-btn { display: inline-flex; }
     .mobile-only-collapse .stack-header { cursor: pointer; }
-
     .nav-toggle { display: block; }
     .nav-links {
-        position: fixed;
-        top: var(--nav-h); left: 0; right: 0;
-        flex-direction: column;
-        background: rgba(6, 10, 9, 0.97);
-        backdrop-filter: blur(14px);
-        padding: 24px;
-        gap: 20px;
-        text-align: center;
-        transform: translateY(-150%);
-        transition: transform .35s ease;
+        position: fixed; top: var(--nav-h); left: 0; right: 0;
+        flex-direction: column; background: rgba(6, 10, 9, 0.97);
+        padding: 24px; gap: 20px; text-align: center;
+        transform: translateY(-150%); transition: transform .35s ease;
         border-bottom: 1px solid var(--accent-line);
     }
     .nav-links.active { transform: translateY(0); }
-
     .hero { padding: 32px 22px; }
     .hero-cta { flex-direction: column; align-items: stretch; }
-    .cta-btn { justify-content: flex-start; }
-
-    /* Slider — sakri desktop strelice, prikazi swipe hint */
     .slider-btn { display: none !important; }
     .swipe-hint { display: block; }
 
-    /* Project kartica na mobilnom */
     .ProjectContainer {
         flex-direction: column !important;
         align-items: stretch !important;
@@ -850,31 +895,21 @@ section.projekti {
     .TextContainer { order: 1; width: 100%; }
     .ImageContainer { order: 2; width: 100%; }
 
-    /* Vertikalne slike (TiltControl, grafika) — uska kolona da ne razvlace karticu */
     .mini-slider-container.portrait { max-width: 280px; margin: 0 auto; }
     .mini-slider-container.portrait .m-slide { min-height: 300px; }
     .mini-slider-container.portrait .m-slide img { max-height: 300px; }
     .mini-slider-container.portrait .m-slide.double { flex-direction: column; }
     .mini-slider-container.portrait .m-slide.double img { max-width: 100%; max-height: 180px; }
 
-    /* Read more u projektima */
     .read-more-btn { display: block; }
     .project-description {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
+        display: -webkit-box; -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; overflow: hidden;
     }
-    .project-description.expanded {
-        display: block;
-        -webkit-line-clamp: unset;
-    }
+    .project-description.expanded { display: block; -webkit-line-clamp: unset; }
 
     .footer-content { flex-direction: column; }
     .footer-link { width: 100%; max-width: 320px; justify-content: center; }
-
-    /* Slider kontrole — gurni ispod naslova umjesto pored */
-    .headingContainer { flex-wrap: wrap; }
     .slider-controls { display: none; }
 }
 

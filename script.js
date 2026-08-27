@@ -1,15 +1,50 @@
 /* =========================================================
-   Samer Kolasević – portfolio script (v2)
-   - Statički hero (bez typewritera)
-   - Slider za projekte (desktop strelice, mobile swipe)
-   - Mini slideri sa dot indikatorima (TiltControl, grafika)
-   - Article PDF viewer (split-pane) + mobile fallback
+   Samer Kolasević – portfolio script (v3 Refactored)
+   - Fast performance (throttled scroll handlers)
+   - Multi-language switcher (ENG / BOS) with persistence
+   - Project sliders & mini-sliders
+   - Homelab & Stack responsive behavior
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ----------------------------------------
-       1. FADE-IN NA SCROLL
+       0. JEZIK / LANGUAGE SWITCHER
+    ---------------------------------------- */
+    let currentLang = localStorage.getItem('samer_lang') || 'en';
+
+    const applyLanguage = (lang) => {
+        currentLang = lang;
+        localStorage.setItem('samer_lang', lang);
+        document.documentElement.lang = lang;
+
+        const langText = document.getElementById('langText');
+        if (langText) {
+            langText.textContent = lang === 'en' ? 'BS' : 'EN';
+        }
+
+        const elements = document.querySelectorAll('[data-en][data-bs]');
+        elements.forEach(el => {
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation !== null) {
+                el.innerHTML = translation;
+            }
+        });
+    };
+
+    applyLanguage(currentLang);
+
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const nextLang = currentLang === 'en' ? 'bs' : 'en';
+            applyLanguage(nextLang);
+        });
+    }
+
+
+    /* ----------------------------------------
+       1. FADE-IN NA SCROLL (IntersectionObserver)
     ---------------------------------------- */
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -18,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '-60px 0px -40px 0px' });
+    }, { threshold: 0.08, rootMargin: '-40px 0px -20px 0px' });
 
     document.querySelectorAll('.appear').forEach(el => observer.observe(el));
 
@@ -35,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('active');
             const open = navMenu.classList.contains('active');
             navToggle.textContent = open ? '✕' : '☰';
-            navToggle.setAttribute('aria-label', open ? 'Zatvori meni' : 'Otvori meni');
+            navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
         });
 
         navItems.forEach(link => {
@@ -48,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ----------------------------------------
-       3. SMOOTH SCROLL + aktivna sekcija
+       3. OPTIMIZIRANI SCROLL & SMOOTH SCROLL
     ---------------------------------------- */
     const navbar   = document.querySelector('.navbar');
     const sections = document.querySelectorAll('section[id], header[id], .headingContainer[id]');
@@ -61,33 +96,40 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!target) return;
 
             e.preventDefault();
-            const navH = navbar?.offsetHeight || 0;
+            const navH = navbar?.offsetHeight || 64;
             const top  = target.getBoundingClientRect().top + window.scrollY - navH - 16;
             window.scrollTo({ top, behavior: 'smooth' });
         });
     });
 
+    // Throttled scroll sa requestAnimationFrame za visoke performanse
+    let isScrolling = false;
     window.addEventListener('scroll', () => {
-        if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 40);
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 40);
 
-        let current = '';
-        sections.forEach(section => {
-            if (window.scrollY >= section.offsetTop - 140) {
-                current = section.getAttribute('id');
-            }
-        });
+                let current = '';
+                sections.forEach(section => {
+                    if (window.scrollY >= section.offsetTop - 160) {
+                        current = section.getAttribute('id');
+                    }
+                });
 
-        navItems.forEach(a => {
-            a.classList.remove('active');
-            const href = a.getAttribute('href') || '';
-            if (current && href.includes(current)) a.classList.add('active');
-        });
-    });
+                navItems.forEach(a => {
+                    a.classList.remove('active');
+                    const href = a.getAttribute('href') || '';
+                    if (current && href.includes(current)) a.classList.add('active');
+                });
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    }, { passive: true });
 
 
     /* ----------------------------------------
        4. PROJEKTI — GLAVNI SLIDER
-       Desktop: strelice. Mobile: swipe.
     ---------------------------------------- */
     const track = document.getElementById('sliderTrack');
     if (track) {
@@ -126,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        // Keyboard (← / →) kad je sekcija u fokusu
+        // Keyboard strelice
         document.addEventListener('keydown', (e) => {
             const rect = track.getBoundingClientRect();
             const inView = rect.top < window.innerHeight && rect.bottom > 0;
@@ -141,8 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ----------------------------------------
-       5. MINI SLIDERI (vertikalne slike u kartici)
-       + dot indikatori
+       5. MINI SLIDERI (Za TiltControl, SeharaCloud, Grafiku)
     ---------------------------------------- */
     document.querySelectorAll('.mini-slider-container').forEach(slider => {
         const mSlides = slider.querySelectorAll('.m-slide');
@@ -153,8 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!mSlides.length || !mPrev || !mNext) return;
 
-        // Generisi dots
-        if (mDots) {
+        if (mDots && mDots.children.length === 0) {
             mSlides.forEach((_, i) => {
                 const d = document.createElement('span');
                 d.className = 'dot' + (i === 0 ? ' active' : '');
@@ -173,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mNext.addEventListener('click', () => show(current + 1));
         mPrev.addEventListener('click', () => show(current - 1));
 
-        // Touch swipe na mini slideru
         let tStart = 0;
         slider.addEventListener('touchstart', (e) => {
             tStart = e.changedTouches[0].screenX;
@@ -220,31 +259,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ----------------------------------------
-       6.5 COLLAPSIBLE STACK PANELI
-       - .always-collapse (Teoretski)
-            -> collapsible svuda, pocetno SKLOPLJEN
-       - .mobile-only-collapse (Primarni / Sekundarni)
-            -> collapsible samo na mobilnom (<=768px),
-               pocetno otvoren, korisnik moze sklopiti
-            -> na desktopu uvijek otvoren (CSS sakriva dugme)
+       7. COLLAPSIBLE STACK PANELI
     ---------------------------------------- */
     const collapsibles = document.querySelectorAll('.StackContainer.collapsible');
     const MOBILE_MAX = 768;
 
     const setExpanded = (panel, expanded) => {
-    const body = panel.querySelector('.stack-body');
-    const btn  = panel.querySelector('.expand-btn');
-    if (!body || !btn) return;
-    if (expanded) {
-        panel.classList.remove('is-collapsed');
-        btn.classList.add('open');           // ← bilo: remove('open')
-        body.style.maxHeight = body.scrollHeight + 'px';
-    } else {
-        panel.classList.add('is-collapsed');
-        btn.classList.remove('open');        // ← bilo: add('open')
-        body.style.maxHeight = '0px';
-    }
-};
+        const body = panel.querySelector('.stack-body');
+        const btn  = panel.querySelector('.expand-btn');
+        if (!body || !btn) return;
+        if (expanded) {
+            panel.classList.remove('is-collapsed');
+            btn.classList.add('open');
+            body.style.maxHeight = body.scrollHeight + 'px';
+        } else {
+            panel.classList.add('is-collapsed');
+            btn.classList.remove('open');
+            body.style.maxHeight = '0px';
+        }
+    };
 
     const applyCollapseState = () => {
         const isMobile = window.innerWidth <= MOBILE_MAX;
@@ -253,14 +286,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const mobileOnly     = panel.classList.contains('mobile-only-collapse');
 
             if (alwaysCollapse) {
-                // Teoretski — pocetno SKLOPLJEN (osim ako korisnik toggla)
                 if (!panel.dataset.userToggled) setExpanded(panel, false);
             } else if (mobileOnly) {
                 if (isMobile) {
-                    // Mobile: pocetno OTVOREN, tipka radi
                     if (!panel.dataset.userToggled) setExpanded(panel, true);
                 } else {
-                    // Desktop: uvijek otvoren — resetuj sve
                     panel.classList.remove('is-collapsed');
                     const body = panel.querySelector('.stack-body');
                     if (body) body.style.maxHeight = '';
@@ -275,14 +305,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!header) return;
 
         const toggle = (e) => {
-            // Na mobile-only panelu klik radi samo ako je dugme vidljivo (mobile)
             const isMobile = window.innerWidth <= MOBILE_MAX;
             const mobileOnly = panel.classList.contains('mobile-only-collapse');
             if (mobileOnly && !isMobile) return;
 
             e.preventDefault();
             const isCollapsed = panel.classList.contains('is-collapsed');
-            setExpanded(panel, isCollapsed);   // toggle
+            setExpanded(panel, isCollapsed);
             panel.dataset.userToggled = '1';
         };
 
@@ -297,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
             applyCollapseState();
-            // Refresh max-height za otvorene panele (zbog reflowa)
             collapsibles.forEach(p => {
                 if (!p.classList.contains('is-collapsed')) {
                     const b = p.querySelector('.stack-body');
@@ -309,16 +337,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ----------------------------------------
-       7. PROČITAJ VIŠE (mobile collapse)
+       8. PROČITAJ VIŠE (mobile description)
     ---------------------------------------- */
     document.querySelectorAll('.read-more-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             const description = this.previousElementSibling;
             if (description && description.classList.contains('project-description')) {
                 description.classList.toggle('expanded');
-                this.textContent = description.classList.contains('expanded')
-                    ? 'Prikaži manje ▲'
-                    : 'Pročitaj više ▼';
+                const isExpanded = description.classList.contains('expanded');
+                this.textContent = isExpanded
+                    ? (currentLang === 'en' ? 'Show less ▲' : 'Prikaži manje ▲')
+                    : (currentLang === 'en' ? 'Read more ▼' : 'Pročitaj više ▼');
             }
         });
     });

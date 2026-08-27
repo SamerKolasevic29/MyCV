@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="bs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Samer Kolasević – student softverskog inženjerstva (UNZE). Projekti, članci i Europass CV.">
+    <meta name="description" content="Samer Kolasević – Software Engineering Student (UNZE). Projects, Articles, Homelab and Europass CV.">
     <meta name="author" content="Samer Kolasević">
-    <meta name="keywords" content="Samer Kolasević, softverski inženjer, C++, .NET, MAUI, Linux, SQL, CV, portfolio, Bosna, UNZE">
+    <meta name="keywords" content="Samer Kolasević, Software Engineer, C++, .NET, MAUI, Linux, SQL, CV, Portfolio, Homelab, UNZE">
 
     <link rel="canonical" href="https://www.samer.kolasevic.com/">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Samer Kolasević – Softverski inženjer">
-    <meta property="og:description" content="Student softverskog inženjerstva (UNZE)">
+    <meta property="og:title" content="Samer Kolasević – Software Engineer">
+    <meta property="og:description" content="Software Engineering Student (UNZE)">
     <meta property="og:url" content="https://www.samer.kolasevic.com/">
     <meta property="og:image" content="https://www.samer.kolasevic.com/assets/MainMaterial/headImage.jpg">
-    <meta property="og:locale" content="bs_BA">
+    <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Samer Kolasević – CV">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Samer Kolasević – Softverski inženjer">
-    <meta name="twitter:description" content="Student softverskog inženjerstva | C++, .NET, Linux, SQL">
+    <meta name="twitter:title" content="Samer Kolasević – Software Engineer">
+    <meta name="twitter:description" content="Software Engineering Student | C++, .NET, Linux, SQL">
     <meta name="twitter:image" content="https://www.samer.kolasevic.com/assets/MainMaterial/headImage.jpg">
 
     <link rel="icon" type="image/png" href="assets/Icons/favicon.png">
@@ -28,10 +28,12 @@
 
     <meta name="theme-color" content="#000000">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <title>Samer Kolasević | Softverski inženjer</title>
+    <title>Samer Kolasević | Software Engineer</title>
 </head>
 <body>
 
@@ -39,13 +41,20 @@
     <nav class="navbar">
         <a href="#pocetna" class="nav-logo">SK</a>
         <ul class="nav-links">
-            <li><a href="#pocetna">Početna</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#projekti">Projekti</a></li>
-            <li><a href="#clanci">Članci</a></li>
-            <li><a href="#oMeni">O meni</a></li>
+            <li><a href="#pocetna" data-en="Home" data-bs="Početna">Home</a></li>
+            <li><a href="#stack" data-en="Stack" data-bs="Stack">Stack</a></li>
+            <li><a href="#projekti" data-en="Projects" data-bs="Projekti">Projects</a></li>
+            <li><a href="#homelab" data-en="Homelab" data-bs="Homelab">Homelab</a></li>
+            <li><a href="#clanci" data-en="Articles" data-bs="Članci">Articles</a></li>
+            <li><a href="#oMeni" data-en="About" data-bs="O meni">About</a></li>
         </ul>
-        <button class="nav-toggle" id="navToggle" aria-label="Otvori meni">☰</button>
+        <div class="nav-right">
+            <button class="lang-btn" id="langToggle" aria-label="Toggle language">
+                <span class="lang-icon">🌐</span>
+                <span class="lang-text" id="langText">BS</span>
+            </button>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
+        </div>
     </nav>
 
     <!-- ============== HERO / HEADER ============== -->
@@ -53,18 +62,18 @@
         <div class="hero-inner">
             <p class="hero-eyebrow">// portfolio</p>
             <h1 class="hero-name">Samer Kolasević</h1>
-            <p class="hero-title">Student softverskog inženjerstva — UNZE</p>
-            <p class="hero-bio">
-                Trenutno na 2. godini studija. Fokus na <span class="green">C++</span>,
-                <span class="green">.NET</span>, <span class="green">SQL</span> i <span class="green">Linux</span> okruženju.
-                Aktivno tražim <span class="green">praksu</span> ili <span class="green">junior poziciju</span>.
+            <p class="hero-title" data-en="Software Engineering Student — UNZE" data-bs="Student softverskog inženjerstva — UNZE">Software Engineering Student — UNZE</p>
+            <p class="hero-bio" 
+               data-en="Currently in my 3th year of study. Focused on <span class='green'>C++</span>, <span class='green'>.NET</span>, <span class='green'>SQL</span>, and <span class='green'>Linux</span> environments. Actively seeking an <span class='green'>internship</span> or <span class='green'>junior position</span>."
+               data-bs="Trenutno na 3. godini studija. Fokus na <span class='green'>C++</span>, <span class='green'>.NET</span>, <span class='green'>SQL</span> i <span class='green'>Linux</span> okruženju. Aktivno tražim <span class='green'>praksu</span> ili <span class='green'>junior poziciju</span>.">
+                Currently in my 3th year of study. Focused on <span class="green">C++</span>, <span class="green">.NET</span>, <span class="green">SQL</span>, and <span class="green">Linux</span> environments. Actively seeking an <span class="green">internship</span> or <span class="green">junior position</span>.
             </p>
 
             <div class="hero-cta">
                 <a class="cta-btn cta-primary" href="assets/Documents/SamerKolasevicCV.pdf" download>
                     <span class="cta-icon" aria-hidden="true">⬇</span>
                     <span class="cta-text">
-                        <span class="cta-label">Preuzmi</span>
+                        <span class="cta-label" data-en="Download" data-bs="Preuzmi">Download</span>
                         <span class="cta-sub">Europass CV (PDF)</span>
                     </span>
                 </a>
@@ -79,7 +88,7 @@
                     <span class="cta-icon" aria-hidden="true">in</span>
                     <span class="cta-text">
                         <span class="cta-label">LinkedIn</span>
-                        <span class="cta-sub">Povežimo se</span>
+                        <span class="cta-sub" data-en="Let's connect" data-bs="Povežimo se">Let's connect</span>
                     </span>
                 </a>
             </div>
@@ -88,106 +97,117 @@
 
     <!-- ============== STACK ============== -->
     <div class="headingContainer" id="stack">
-        <img src="assets/Icons/Tools.png" alt="">
-        <h2>Tehnički stack</h2>
+        <img src="assets/Icons/Tools.png" alt="Tools Icon">
+        <h2 data-en="Technical Stack & Focus" data-bs="Tehnički stack i fokus">Technical Stack & Focus</h2>
     </div>
     <section class="stack appear">
         <div class="stack-grid">
 
-            <!-- Primarni: collapsible SAMO na mobilnom -->
+            <!-- Primary Focus -->
             <div class="StackContainer collapsible mobile-only-collapse">
                 <div class="stack-header">
-                    <h3>Primarni stack</h3>
-                    <button class="expand-btn" type="button" aria-label="Proširi/skupi">▼</button>
+                    <div>
+                        <span class="role-type primary-tag" data-en="PRIMARY ROLE" data-bs="PRIMARNA ULOGA">PRIMARY ROLE</span>
+                        <h3 data-en="Backend & Infrastructure Engineer" data-bs="Backend & Infrastructure Engineer">Backend & Infrastructure Engineer</h3>
+                    </div>
+                    <button class="expand-btn" type="button" aria-label="Toggle">▼</button>
                 </div>
                 <div class="stack-body">
+                    <ul class="stack-list">
+                        <li data-en="<strong class='green'>REST API Development:</strong> ASP.NET Core / C#" data-bs="<strong class='green'>REST API razvoj:</strong> ASP.NET Core / C#"><strong class="green">REST API Development:</strong> ASP.NET Core / C#</li>
+                        <li data-en="<strong class='green'>Databases:</strong> PostgreSQL, SQL Server — indexing, query optimization, schemas" data-bs="<strong class='green'>Rad sa bazama:</strong> PostgreSQL, SQL Server — indexeri, optimizacija upita, šeme"><strong class="green">Databases:</strong> PostgreSQL, SQL Server — indexing, query optimization, schemas</li>
+                        <li data-en="<strong class='green'>Linux Systems:</strong> System administration, server maintenance, deployment pipelines" data-bs="<strong class='green'>Linux administracija:</strong> Održavanje servera, deployment, sistemsko podešavanje"><strong class="green">Linux Systems:</strong> System administration, server maintenance, deployment pipelines</li>
+                    </ul>
+                    <div class="badges">
+                        <span class="tech-badge cs">ASP.NET Core</span>
+                        <span class="tech-badge cs">C#</span>
+                        <span class="tech-badge sql">PostgreSQL</span>
+                        <span class="tech-badge sql">SQL Server</span>
+                        <span class="tech-badge linux">Linux</span>
+                        <span class="tech-badge git">Git</span>
+                        <span class="tech-badge docker">Docker</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Focus -->
+            <div class="StackContainer collapsible mobile-only-collapse">
+                <div class="stack-header">
+                    <div>
+                        <span class="role-type secondary-tag" data-en="SECONDARY FOCUS" data-bs="SEKUNDARNI FOKUS">SECONDARY FOCUS</span>
+                        <h3 data-en="Systems & Tools Programmer" data-bs="Systems & Tools Programmer">Systems & Tools Programmer</h3>
+                    </div>
+                    <button class="expand-btn" type="button" aria-label="Toggle">▼</button>
+                </div>
+                <div class="stack-body">
+                    <ul class="stack-list">
+                        <li data-en="<strong class='green'>C++ Systems:</strong> Performance-critical tools, CLI/TUI applications" data-bs="<strong class='green'>C++ Alati:</strong> Performance-kritični alati, TUI aplikacije"><strong class="green">C++ Systems:</strong> Performance-critical tools, CLI/TUI applications</li>
+                        <li data-en="<strong class='green'>Low-Level Engineering:</strong> Memory management, process handling — key differentiator bridging system CLI/TUI tools and backend API services" data-bs="<strong class='green'>Nizak nivo:</strong> Memorija, procesi — ključni diferencijator koji spaja C++ TUI alate i backend servise"><strong class="green">Low-Level Engineering:</strong> Memory management, process handling — key differentiator bridging system CLI/TUI tools and backend API services</li>
+                    </ul>
                     <div class="badges">
                         <span class="tech-badge cpp">C++</span>
-                        <span class="tech-badge cs">.NET C#</span>
-                        <span class="tech-badge maui">.NET MAUI</span>
-                        <span class="tech-badge sql">SQL</span>
-                        <span class="tech-badge uiux">UI/UX (Figma)</span>
-                        <span class="tech-badge git">Git</span>
-                        <span class="tech-badge ecpp">Embedded (C++)</span>
-                        <span class="tech-badge linux">Linux</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sekundarni: collapsible SAMO na mobilnom -->
-            <div class="StackContainer collapsible mobile-only-collapse">
-                <div class="stack-header">
-                    <h3>Sekundarni stack</h3>
-                    <button class="expand-btn" type="button" aria-label="Proširi/skupi">▼</button>
-                </div>
-                <div class="stack-body">
-                    <div class="badges">
                         <span class="tech-badge c">C</span>
-                        <span class="tech-badge web">HTML + CSS + JS</span>
-                        <span class="tech-badge py">Python</span>
-                        <span class="tech-badge svg">Inkscape</span>
-                        <span class="tech-badge docker">Docker</span>
-                        <span class="tech-badge ms">MS Office</span>
+                        <span class="tech-badge ecpp">Embedded (C++)</span>
+                        <span class="tech-badge linux">Linux CLI/TUI</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Teoretski: collapsible UVIJEK (desktop + mobile) -->
+            <!-- Academic / Foundations -->
             <div class="StackContainer collapsible always-collapse">
                 <div class="stack-header">
-                    <h3>Teoretski stack</h3>
-                    <button class="expand-btn" type="button" aria-label="Proširi/skupi">▼</button>
+                    <div>
+                        <span class="role-type academic-tag" data-en="ACADEMIC & TOOLS" data-bs="AKADEMSKI I OSTALO">ACADEMIC & TOOLS</span>
+                        <h3 data-en="Academic Foundations & Secondary Stack" data-bs="Teoretska podloga i ostali alati">Academic Foundations & Secondary Stack</h3>
+                    </div>
+                    <button class="expand-btn" type="button" aria-label="Toggle">▼</button>
                 </div>
                 <div class="stack-body">
-                    <p class="stack-sub">Oblasti koje pokrivam akademski/teoretski:</p>
+                    <p class="stack-sub" data-en="Theoretical background, frontend basics, and utility design tools:" data-bs="Oblasti koje pokrivam akademski, frontend i pomoćni alati:">Theoretical background, frontend basics, and utility design tools:</p>
                     <div class="badges">
-                        <span class="tech-badge theory">Data Science</span>
-                        <span class="tech-badge theory">Algoritmi</span>
-                        <span class="tech-badge theory">Linux okruženje</span>
-                        <span class="tech-badge theory">Paradigme programiranja</span>
-                        <span class="tech-badge theory">Operativni sistemi</span>
-                        <span class="tech-badge theory">File sistemi</span>
-                        <span class="tech-badge theory">Ugradbeni sistemi</span>
-                        <span class="tech-badge theory">Razvoj softverskih projekata</span>
-                        <span class="tech-badge theory">Baze podataka</span>
-                        <span class="tech-badge theory">Dizajn sučelja</span>
-                        <span class="tech-badge theory">Algebra i Diskretna matematika</span>
+                        <span class="tech-badge py">Python</span>
+                        <span class="tech-badge web">HTML + CSS + JS</span>
+                        <span class="tech-badge maui">.NET MAUI</span>
+                        <span class="tech-badge uiux">UI/UX (Figma)</span>
+                        <span class="tech-badge svg">Inkscape</span>
+                        <span class="tech-badge theory" data-en="Data Structures & Algorithms" data-bs="Strukture podataka i algoritmi">Data Structures & Algorithms</span>
+                        <span class="tech-badge theory" data-en="Operating Systems & Filesystems" data-bs="Operativni i File sistemi">Operating Systems & Filesystems</span>
+                        <span class="tech-badge theory" data-en="Discrete Math & Algebra" data-bs="Diskretna matematika i algebra">Discrete Math & Algebra</span>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- ============== PROJEKTI (SLIDER) ============== -->
+    <!-- ============== PROJEKTI ============== -->
     <div class="headingContainer" id="projekti">
-        <img src="assets/Icons/Code.png" alt="">
-        <h2>Projekti i radovi</h2>
+        <img src="assets/Icons/Code.png" alt="Code Icon">
+        <h2 data-en="Featured Projects" data-bs="Projekti i radovi">Featured Projects</h2>
         <div class="slider-controls">
-            <button class="slider-btn prev-btn" id="prevBtn" aria-label="Prethodni projekat">&#10094;</button>
-            <button class="slider-btn next-btn" id="nextBtn" aria-label="Sljedeći projekat">&#10095;</button>
+            <button class="slider-btn prev-btn" id="prevBtn" aria-label="Previous project">&#10094;</button>
+            <button class="slider-btn next-btn" id="nextBtn" aria-label="Next project">&#10095;</button>
         </div>
     </div>
 
-    <p class="swipe-hint">swipe za sljedeći / prethodni projekat ↔</p>
+    <p class="swipe-hint" data-en="swipe for next / previous project ↔" data-bs="swipe za sljedeći / prethodni projekat ↔">swipe for next / previous project ↔</p>
 
     <section class="projekti">
         <div class="slider-wrapper">
             <div class="slider-track-container">
                 <div class="slider-track" id="sliderTrack">
 
-                    <!-- 1. SeharaCloud (samo tekst) -->
-                    <article class="ProjectContainer no-image appear">
+                    <!-- 1. SeharaCloud (Refresh sa slikama i mini sliderom) -->
+                    <article class="ProjectContainer appear">
                         <div class="TextContainer">
-                            <h3>SeharaCloud <span class="tag-status">U RAZVOJU</span></h3>
-                            <p class="project-description">
-                                Full-stack projekat u saradnji sa kolegama <span class="green">Tašić Tajrom</span> i
-                                <span class="green">Kolasević Amelom</span>. Sistem obezbjeđuje prenos različitih
-                                formata podataka na mobilnu aplikaciju API pozivima prema bazi podataka
-                                (<span class="green">kućni server</span>), te prikladan prikaz i reprodukciju u
-                                zavisnosti od formata.
+                            <h3>SeharaCloud <span class="tag-status" data-en="IN DEVELOPMENT" data-bs="U RAZVOJU">IN DEVELOPMENT</span></h3>
+                            <p class="project-description" 
+                               data-en="Full-stack project built in collaboration with colleagues <span class='green'>Tašić Tajra</span> and <span class='green'>Kolasević Amel</span>. The system enables multi-format data transmission to a mobile application via API calls towards a database hosted on a <span class='green'>home server</span>, along with format-specific rendering and playback."
+                               data-bs="Full-stack projekat u saradnji sa kolegama <span class='green'>Tašić Tajrom</span> i <span class='green'>Kolasević Amelom</span>. Sistem obezbjeđuje prenos različitih formata podataka na mobilnu aplikaciju API pozivima prema bazi podataka (<span class='green'>kućni server</span>), te prikladan prikaz i reprodukciju u zavisnosti od formata.">
+                                Full-stack project built in collaboration with colleagues <span class="green">Tašić Tajra</span> and <span class="green">Kolasević Amel</span>. The system enables multi-format data transmission to a mobile application via API calls towards a database hosted on a <span class="green">home server</span>, along with format-specific rendering and playback.
                             </p>
-                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
-                            <p class="tech-naslov">Korištene tehnologije:</p>
+                            <button class="read-more-btn" type="button" data-en="Read more ▼" data-bs="Pročitaj više ▼">Read more ▼</button>
+                            <p class="tech-naslov" data-en="Technologies used:" data-bs="Korištene tehnologije:">Technologies used:</p>
                             <div class="badges">
                                 <span class="tech-badge sql">SQL</span>
                                 <span class="tech-badge cpp">C++</span>
@@ -197,40 +217,61 @@
                                 <span class="tech-badge uiux">UI/UX (Figma)</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/SeharaCloud" target="_blank" rel="noopener" title="GitHub repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/SeharaCloud" target="_blank" rel="noopener" title="GitHub repository">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_linux-win-linus-ugcPost-7446210307720617984-X50k" target="_blank" rel="noopener" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_linux-win-linus-ugcPost-7446210307720617984-X50k" target="_blank" rel="noopener" title="LinkedIn post">
+                                    <img src="assets/Icons/linkedin.png" alt="LinkedIn">
+                                </a>
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_mama-vidi-me-gdje-sam-dana-3062026-godine-activity-7466439901643816960-bSya?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF0-liUBKt19L-giEMNRvYN92p0xg4TTG8A" target="_blank" rel="noopener" title="LinkedIn post">
+                                    <img src="assets/Icons/linkedin.png" alt="LinkedIn">
+                                </a>
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_linux-win-linus-ugcPost-7446210307720617984-X50k" target="_blank" rel="noopener" title="LinkedIn post">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
                             </div>
                         </div>
+                        <div class="ImageContainer mini-slider-container portrait">
+                            <div class="m-slide active">
+                                <img src="assets/MainMaterial/Sehara1.png" alt="SeharaCloud Screenshot 1">
+                            </div>
+                            <div class="m-slide">
+                                <img src="assets/MainMaterial/Sehara2.png" alt="SeharaCloud Screenshot 2">
+                            </div>
+                            <div class="m-slide">
+                                <img src="assets/MainMaterial/Sehara3.png" alt="SeharaCloud Screenshot 3">
+                            </div>
+                            <div class="m-slider-controls">
+                                <button class="m-btn m-prev" aria-label="Previous image">&#10094;</button>
+                                <span class="m-dots" aria-hidden="true"></span>
+                                <button class="m-btn m-next" aria-label="Next image">&#10095;</button>
+                            </div>
+                        </div>
                     </article>
 
-                    <!-- 2. BORBA (horizontalne / pejzaž slike — grid-vertical, jedan ispod drugog) -->
+                    <!-- 2. BORBA -->
                     <article class="ProjectContainer appear">
                         <div class="TextContainer">
-                            <h3>BORBA — TUI igra</h3>
-                            <p class="project-description">
-                                BORBA (v1.3) je konzolna igra na poteze (kao stare Pokémon igre) napisana u
-                                <span class="green">C++</span>. Sastoji se od custom <span class="green">header-only</span>
-                                biblioteke za animacije, <span class="green">RAII</span> principa,
-                                <span class="green">MVC</span> arhitekture (početno monolitne) i STL biblioteke.
+                            <h3>BORBA — TUI Game</h3>
+                            <p class="project-description" 
+                               data-en="BORBA (v1.3) is a turn-based console game inspired by classic Pokémon games, written in <span class='green'>C++</span>. It features a custom <span class='green'>header-only</span> library for animations, <span class='green'>RAII</span> principles, <span class='green'>MVC</span> architecture, and standard STL library utilization."
+                               data-bs="BORBA (v1.3) je konzolna igra na poteze (kao stare Pokémon igre) napisana u <span class='green'>C++</span>. Sastoji se od custom <span class='green'>header-only</span> biblioteke za animacije, <span class='green'>RAII</span> principa, <span class='green'>MVC</span> arhitekture (početno monolitne) i STL biblioteke.">
+                                BORBA (v1.3) is a turn-based console game inspired by classic Pokémon games, written in <span class="green">C++</span>. It features a custom <span class="green">header-only</span> library for animations, <span class="green">RAII</span> principles, <span class="green">MVC</span> architecture, and standard STL library utilization.
                             </p>
-                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
-                            <p class="tech-naslov">Korištene tehnologije:</p>
+                            <button class="read-more-btn" type="button" data-en="Read more ▼" data-bs="Pročitaj više ▼">Read more ▼</button>
+                            <p class="tech-naslov" data-en="Technologies used:" data-bs="Korištene tehnologije:">Technologies used:</p>
                             <div class="badges">
                                 <span class="tech-badge cpp">C++</span>
                                 <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/BORBA-v1.3" target="_blank" rel="noopener" title="GitHub repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/BORBA-v1.3" target="_blank" rel="noopener" title="GitHub repository">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
                                 <a href="https://github.com/SamerKolasevic29/BORBA-V1.0" target="_blank" rel="noopener" title="GitHub Legacy">
                                     <img src="assets/Icons/githab.png" alt="GitHub Legacy">
                                 </a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-gamedev-ugcPost-7431345320569192449-kwdS" target="_blank" rel="noopener" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-gamedev-ugcPost-7431345320569192449-kwdS" target="_blank" rel="noopener" title="LinkedIn post">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
                             </div>
@@ -241,19 +282,20 @@
                         </div>
                     </article>
 
-                    <!-- 3. TiltControl (vertikalne / portret slike — mini slider) -->
+                    <!-- 3. TiltControl -->
                     <article class="ProjectContainer appear">
                         <div class="TextContainer">
-                            <h3>TiltControl — višenamjenski projekat</h3>
-                            <p class="project-description">
-                                Mobilna aplikacija u fokusu očitavanja vrijednosti sa <span class="green">akcelerometra</span>,
-                                sa namjenama u:<br>
-                                <span class="bullet">•</span> Okruženju za manipulaciju objekta (kretanje, veličina, brzina) u stvarnom vremenu<br>
-                                <span class="bullet">•</span> Engine-u koji definiše sudar sa ostalim objektima tokom pokreta (igre sa nagibom telefona)<br>
-                                <span class="bullet">•</span> Univerzalnom kontroleru uređaja sa filtriranjem i mapiranjem u svoj format<br>
+                            <h3>TiltControl — Multi-purpose App</h3>
+                            <p class="project-description" 
+                               data-en="Mobile application focused on reading <span class='green'>accelerometer</span> sensor data for:<br><span class='bullet'>•</span> Real-time object manipulation (motion, scaling, speed)<br><span class='bullet'>•</span> Collision physics engine for motion-controlled games<br><span class='bullet'>•</span> Universal hardware device controller mapping<br>"
+                               data-bs="Mobilna aplikacija u fokusu očitavanja vrijednosti sa <span class='green'>akcelerometra</span>, sa namjenama u:<br><span class='bullet'>•</span> Okruženju za manipulaciju objekta (kretanje, veličina, brzina) u stvarnom vremenu<br><span class='bullet'>•</span> Engine-u koji definiše sudar sa ostalim objektima tokom pokreta (igre sa nagibom telefona)<br><span class='bullet'>•</span> Univerzalnom kontroleru uređaja sa filtriranjem i mapiranjem u svoj format<br>">
+                                Mobile application focused on reading <span class="green">accelerometer</span> sensor data for:<br>
+                                <span class="bullet">•</span> Real-time object manipulation (motion, scaling, speed)<br>
+                                <span class="bullet">•</span> Collision physics engine for motion-controlled games<br>
+                                <span class="bullet">•</span> Universal hardware device controller mapping<br>
                             </p>
-                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
-                            <p class="tech-naslov">Korištene tehnologije:</p>
+                            <button class="read-more-btn" type="button" data-en="Read more ▼" data-bs="Pročitaj više ▼">Read more ▼</button>
+                            <p class="tech-naslov" data-en="Technologies used:" data-bs="Korištene tehnologije:">Technologies used:</p>
                             <div class="badges">
                                 <span class="tech-badge cs">.NET C#</span>
                                 <span class="tech-badge maui">.NET MAUI</span>
@@ -261,10 +303,10 @@
                                 <span class="tech-badge ecpp">Embedded (C++)</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/TiltControl" target="_blank" rel="noopener" title="GitHub repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/TiltControl" target="_blank" rel="noopener" title="GitHub repository">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
-                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415775892251316224/" target="_blank" rel="noopener" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415775892251316224/" target="_blank" rel="noopener" title="LinkedIn post">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
                             </div>
@@ -281,36 +323,34 @@
                                 <img src="assets/MainMaterial/Controller.gif" alt="Controller">
                             </div>
                             <div class="m-slider-controls">
-                                <button class="m-btn m-prev" aria-label="Prethodna slika">&#10094;</button>
+                                <button class="m-btn m-prev" aria-label="Previous image">&#10094;</button>
                                 <span class="m-dots" aria-hidden="true"></span>
-                                <button class="m-btn m-next" aria-label="Sljedeća slika">&#10095;</button>
+                                <button class="m-btn m-next" aria-label="Next image">&#10095;</button>
                             </div>
                         </div>
                     </article>
 
-                    <!-- 4. RBAC (horizontalne — grid-vertical) -->
+                    <!-- 4. RBAC -->
                     <article class="ProjectContainer appear">
                         <div class="TextContainer">
                             <h3>RBAC-SYS — Admin vs Worker</h3>
-                            <p class="project-description">
-                                Implementiran terminalni sistem po <span class="green">RBAC</span> principu kojem je
-                                glavni zadatak separacija pristupa i mogućnosti po ulogama. Neke od mogućnosti su
-                                ostavljanje log traga za određene akcije, uređivanje ciljanog fajla putem konstruisanog
-                                editora sličnom <span class="green">Vim</span>-u ili <span class="green">nano</span> naredbi
-                                na Linuxu. Ponovna upotreba sopstvenih biblioteka je također ključan dio.
+                            <p class="project-description" 
+                               data-en="Terminal system implemented following <span class='green'>RBAC</span> principles for role-based privilege separation. Features action audit logging, custom terminal text editor (Vim/nano style on Linux), and modular library reuse."
+                               data-bs="Implementiran terminalni sistem po <span class='green'>RBAC</span> principu kojem je glavni zadatak separacija pristupa i mogućnosti po ulogama. Neke od mogućnosti su ostavljanje log traga za određene akcije, uređivanje ciljanog fajla putem konstruisanog editora sličnom <span class='green'>Vim</span>-u ili <span class='green'>nano</span> naredbi na Linuxu. Ponovna upotreba sopstvenih biblioteka je također ključan dio.">
+                                Terminal system implemented following <span class="green">RBAC</span> principles for role-based privilege separation. Features action audit logging, custom terminal text editor (Vim/nano style on Linux), and modular library reuse.
                             </p>
-                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
-                            <p class="tech-naslov">Korištene tehnologije:</p>
+                            <button class="read-more-btn" type="button" data-en="Read more ▼" data-bs="Pročitaj više ▼">Read more ▼</button>
+                            <p class="tech-naslov" data-en="Technologies used:" data-bs="Korištene tehnologije:">Technologies used:</p>
                             <div class="badges">
                                 <span class="tech-badge cpp">C++</span>
                                 <span class="tech-badge linux">Linux</span>
                                 <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/RBACimplementation" target="_blank" rel="noopener" title="GitHub repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/RBACimplementation" target="_blank" rel="noopener" title="GitHub repository">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
-                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-cybersecurity-ugcPost-7444677986198609920-lxef" target="_blank" rel="noopener" title="LinkedIn objava">
+                                <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_cpp-cplusplus-cybersecurity-ugcPost-7444677986198609920-lxef" target="_blank" rel="noopener" title="LinkedIn post">
                                     <img src="assets/Icons/linkedin.png" alt="LinkedIn">
                                 </a>
                                 <a href="https://www.linkedin.com/posts/samer-kolasevi%C4%87-119aaa377_during-the-reuse-of-my-custom-animationh-ugcPost-7443298048321032194-ngeW" target="_blank" rel="noopener" title="LinkedIn article">
@@ -324,20 +364,17 @@
                         </div>
                     </article>
 
-                    <!-- 5. Grafički prijedlozi (vertikalne — mini slider portrait) -->
+                    <!-- 5. Grafika -->
                     <article class="ProjectContainer appear">
                         <div class="TextContainer">
-                            <h3>Mnoštvo grafičkih prijedloga</h3>
-                            <p class="project-description">
-                                Na predmetima vezanim za grafiku i općenito dizajn razvio sam vještinu sistematske
-                                podjele potrebnih stavki i komponenti u projektima, sama pravila
-                                <span class="green">UI/UX</span> oblasti, te konstantnim radom i znatiželjom razvio sam
-                                osjećaj za grafička rješenja po pitanju reklamnih postera, vizit kartica, kao i kompletnih
-                                <span class="green">wireframe</span> rješenja za aplikacije. Cjelokupan nivo znanja iz
-                                istog mi dobro dođe kao još jedan alat na švicarskom nožu.
+                            <h3>Graphical & UI/UX Designs</h3>
+                            <p class="project-description" 
+                               data-en="Systematic vector design workflows for promotional posters, business cards, and comprehensive <span class='green'>UI/UX wireframes</span>. High attention to alignment, grid layouts, and aesthetic identity."
+                               data-bs="Na predmetima vezanim za grafiku i općenito dizajn razvio sam vještinu sistematske podjele potrebnih stavki i komponenti u projektima, sama pravila <span class='green'>UI/UX</span> oblasti, te osjećaj za grafička rješenja po pitanju reklamnih postera, vizit kartica, kao i kompletnih <span class='green'>wireframe</span> rješenja za aplikacije.">
+                                Systematic vector design workflows for promotional posters, business cards, and comprehensive <span class="green">UI/UX wireframes</span>. High attention to alignment, grid layouts, and aesthetic identity.
                             </p>
-                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
-                            <p class="tech-naslov">Korištene tehnologije:</p>
+                            <button class="read-more-btn" type="button" data-en="Read more ▼" data-bs="Pročitaj više ▼">Read more ▼</button>
+                            <p class="tech-naslov" data-en="Technologies used:" data-bs="Korištene tehnologije:">Technologies used:</p>
                             <div class="badges">
                                 <span class="tech-badge uiux">UI/UX (Figma)</span>
                                 <span class="tech-badge svg">Inkscape</span>
@@ -355,9 +392,9 @@
                                 <img src="assets/MainMaterial/Vizitka.png" alt="Vizit karta">
                             </div>
                             <div class="m-slider-controls">
-                                <button class="m-btn m-prev" aria-label="Prethodna slika">&#10094;</button>
+                                <button class="m-btn m-prev" aria-label="Previous image">&#10094;</button>
                                 <span class="m-dots" aria-hidden="true"></span>
-                                <button class="m-btn m-next" aria-label="Sljedeća slika">&#10095;</button>
+                                <button class="m-btn m-next" aria-label="Next image">&#10095;</button>
                             </div>
                         </div>
                     </article>
@@ -366,22 +403,21 @@
                     <article class="ProjectContainer no-image appear">
                         <div class="TextContainer">
                             <h3>MyCV</h3>
-                            <p class="project-description">
-                                Statička web stranica koja na prikladan način oponaša CV papir u modernom vremenu.
-                                Sadrži sve potrebne podatke, projekte i tzv. <span class="green">soft skills</span>,
-                                uz elegantan dizajn koji naginje <span class="green">glassmorphism</span> stilu.
-                                Stranica je živa i bit će redovno ažurirana.<br><br>
-                                <span class="bullet">•</span> HTML + CSS + JS<br>
-                                <span class="bullet">•</span> Hostano na GitHub Pages, custom domena <span class="green">samer.kolasevic.com</span><br>
+                            <p class="project-description" 
+                               data-en="Fast, modern static web portfolio mimicking clean paper resumes with glassmorphism touches.<br><br><span class='bullet'>•</span> Built with HTML5, CSS3, JS<br><span class='bullet'>•</span> Self-hosted & served on custom domain <span class='green'>samer.kolasevic.com</span><br>"
+                               data-bs="Statička web stranica koja na prikladan način oponaša CV papir u modernom vremenu uz elegantan glassmorphism dizajn.<br><br><span class='bullet'>•</span> HTML + CSS + JS<br><span class='bullet'>•</span> Self-hosted na GitHub Pages / kućnom serveru, custom domena <span class='green'>samer.kolasevic.com</span><br>">
+                                Fast, modern static web portfolio mimicking clean paper resumes with glassmorphism touches.<br><br>
+                                <span class="bullet">•</span> Built with HTML5, CSS3, JS<br>
+                                <span class="bullet">•</span> Self-hosted & served on custom domain <span class="green">samer.kolasevic.com</span><br>
                             </p>
-                            <button class="read-more-btn" type="button">Pročitaj više ▼</button>
-                            <p class="tech-naslov">Korištene tehnologije:</p>
+                            <button class="read-more-btn" type="button" data-en="Read more ▼" data-bs="Pročitaj više ▼">Read more ▼</button>
+                            <p class="tech-naslov" data-en="Technologies used:" data-bs="Korištene tehnologije:">Technologies used:</p>
                             <div class="badges">
                                 <span class="tech-badge web">HTML + CSS + JS</span>
                                 <span class="tech-badge git">Git</span>
                             </div>
                             <div class="pro-links">
-                                <a href="https://github.com/SamerKolasevic29/MyCV" target="_blank" rel="noopener" title="GitHub repozitorij">
+                                <a href="https://github.com/SamerKolasevic29/MyCV" target="_blank" rel="noopener" title="GitHub repository">
                                     <img src="assets/Icons/githab.png" alt="GitHub">
                                 </a>
                             </div>
@@ -393,38 +429,82 @@
         </div>
     </section>
 
+    <!-- ============== NOVA SEKCIJA: HOMELABBING & SERVERI ============== -->
+    <div class="headingContainer" id="homelab">
+        <img src="assets/Icons/Tools.png" alt="Server Icon">
+        <h2 data-en="Homelabbing & Server Infrastructure" data-bs="Homelabbing i serveri">Homelabbing & Server Infrastructure</h2>
+    </div>
+    <section class="homelab appear">
+        <div class="homelab-card">
+            <div class="homelab-header">
+                <h3 data-en="Self-Hosted Lab & Server Administration" data-bs="Self-Hosted kućni server i administracija">Self-Hosted Lab & Server Administration</h3>
+                <p class="homelab-desc" 
+                   data-en="I independently run and maintain a private Linux home server infrastructure. It serves as my active environment for hosting production applications, testing PostgreSQL & SQL Server workloads, deploying REST APIs, and mastering system administration."
+                   data-bs="Aktivno vodim i održavam sopstvenu Linux server infrastrukturu. Služi mi kao produkcijsko okruženje za hosting web aplikacija, reverse proxy rutiranje, testiranje radnih opterećenja baza podataka i deployment backend API-ja.">
+                    I independently run and maintain a private Linux home server infrastructure. It serves as my active environment for hosting production applications, testing PostgreSQL & SQL Server workloads, deploying REST APIs, and mastering system administration.
+                </p>
+            </div>
+
+            <div class="homelab-grid">
+                <div class="homelab-box">
+                    <h4 data-en="Live Hosted Domains" data-bs="Aktivne hosted domene">Live Hosted Domains</h4>
+                    <p data-en="Production reverse-proxy hosting with SSL setup:" data-bs="Produkcijski hosting i reverse-proxy podešavanje:">Production reverse-proxy hosting with SSL setup:</p>
+                    <div class="domain-chips">
+                        <a href="https://samer.kolasevic.com" target="_blank" rel="noopener" class="domain-chip">samer.kolasevic.com</a>
+                        <a href="https://amel.kolasevic.com" target="_blank" rel="noopener" class="domain-chip">amel.kolasevic.com</a>
+                        <a href="https://meho.kolasevic.com" target="_blank" rel="noopener" class="domain-chip">meho.kolasevic.com</a>
+                    </div>
+                </div>
+
+                <div class="homelab-box">
+                    <h4 data-en="Hosted Services & Ecosystems" data-bs="Pokrenuti servisi i ekosistem">Hosted Services & Ecosystems</h4>
+                    <ul class="homelab-list">
+                        <li data-en="<strong class='green'>SeharaCloud Infrastructure:</strong> Database API server streaming multi-format data to clients" data-bs="<strong class='green'>SeharaCloud Backend:</strong> Baza i API server za prenos i streaming podataka prema aplikaciji"><strong class="green">SeharaCloud Infrastructure:</strong> Database API server streaming multi-format data to clients</li>
+                        <li data-en="<strong class='green'>Brother's ORM Framework:</strong> Staging environment & testing pipelines for custom ORM tools" data-bs="<strong class='green'>Bratov ORM:</strong> Staging okruženje i testni pipeline za custom ORM framework"><strong class="green">Brother's ORM Framework:</strong> Staging environment & testing pipelines for custom ORM tools</li>
+                        <li data-en="<strong class='green'>System Services:</strong> Nginx routing, automated backup scripts, and service isolation" data-bs="<strong class='green'>Sistemski servisi:</strong> Nginx reverse proxy, automatski backupi i izolacija servisa"><strong class="green">System Services:</strong> Nginx routing, automated backup scripts, and service isolation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="homelab-collab">
+                <span class="collab-badge" data-en="OPEN FOR COLLABORATION" data-bs="OTVOREN ZA SARADNJU">OPEN FOR COLLABORATION</span>
+                <p data-en="<strong>Open for hosting & infrastructure collaborations:</strong> Interested in deploying, testing, or hosting your project on reliable self-hosted Linux infrastructure? I am always open to technical inquiries and joint projects!"
+                   data-bs="<strong>Otvoren za hosting i infrastrukturne saradnje:</strong> Želite testirati, deployati ili hostati svoj projekat na pouzdanoj Linux infrastrukturi? Otvoren sam za tehničke saradnje i zajedničke projekte!">
+                    <strong>Open for hosting & infrastructure collaborations:</strong> Interested in deploying, testing, or hosting your project on reliable self-hosted Linux infrastructure? I am always open to technical inquiries and joint projects!
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- ============== ČLANCI / PUBLIKACIJE ============== -->
     <div class="headingContainer" id="clanci">
-        <img src="assets/Icons/Code.png" alt="">
-        <h2>Članci i publikacije</h2>
+        <img src="assets/Icons/Code.png" alt="Code Icon">
+        <h2 data-en="Articles & Publications" data-bs="Članci i publikacije">Articles & Publications</h2>
     </div>
     <section class="clanci appear">
         <div class="articles-split">
 
-            <!-- Lijevo: lista članaka (placeholder — Samer mijenja ručno) -->
-            <aside class="article-list" aria-label="Lista članaka">
+            <!-- Lista članaka -->
+            <aside class="article-list" aria-label="Article list">
                 
-
-                <a href="#" class="article-link"
-                   data-pdf="assets/Articles/DotnetArticle.pdf">
+                <a href="#" class="article-link" data-pdf="assets/Articles/DotnetArticle.pdf">
                     <div class="article-meta">
-                        <span class="article-tag">Članak</span>
+                        <span class="article-tag" data-en="Article" data-bs="Članak">Article</span>
                     </div>
                     <h3 class="article-title">IQueryable vs IEnumerable vs List</h3>
-                    <p class="article-desc">Članak inspirisan tokom razrade ASP.NET Core Web API-a</p>
+                    <p class="article-desc" data-en="Article written during the exploration of ASP.NET Core Web API optimization" data-bs="Članak inspirisan tokom razrade ASP.NET Core Web API-a">Article written during the exploration of ASP.NET Core Web API optimization</p>
                 </a>
 
-                <a href="#" class="article-link active-article"
-                   data-pdf="assets/Articles/SeharaArticle.pdf">
+                <a href="#" class="article-link active-article" data-pdf="assets/Articles/SeharaArticle.pdf">
                     <div class="article-meta">
-                        <span class="article-tag">Prezentacija</span>
+                        <span class="article-tag" data-en="Presentation" data-bs="Prezentacija">Presentation</span>
                     </div>
-                    <h3 class="article-title">SeharaCloud - Backend arhitektura</h3>
-                    <p class="article-desc">Prezentacija koja je bila na predavanju 1. godini Softverskog Inženjerstva na Univerzitetu u Zenici</p>
+                    <h3 class="article-title">SeharaCloud - Backend Architecture</h3>
+                    <p class="article-desc" data-en="Lecture presentation delivered to 1st-year Software Engineering students at University of Zenica" data-bs="Prezentacija koja je bila na predavanju 1. godini Softverskog Inženjerstva na Univerzitetu u Zenici">Lecture presentation delivered to 1st-year Software Engineering students at University of Zenica</p>
                 </a>
             </aside>
 
-            <!-- Desno: PDF preglednik -->
+            <!-- PDF preglednik -->
             <div class="article-viewer">
                 <div class="viewer-toolbar">
                     <span class="viewer-dot"></span>
@@ -433,14 +513,14 @@
                     <span class="viewer-path" id="viewerPath">assets/Articles/SeharaArticle.pdf</span>
                     <a class="viewer-open-ext" id="viewerOpenExt"
                        href="assets/Articles/SeharaArticle.pdf" target="_blank" rel="noopener"
-                       title="Otvori u novom tabu">↗</a>
+                       title="Open in new tab">↗</a>
                 </div>
                 <iframe id="pdfViewer"
                         src="assets/Articles/SeharaArticle.pdf"
-                        title="PDF preglednik članka"
+                        title="PDF Viewer"
                         loading="lazy"></iframe>
-                <p class="viewer-mobile-hint">
-                    Tap na članak otvara PDF u novom tabu (optimizirano za mobilne uređaje).
+                <p class="viewer-mobile-hint" data-en="Tapping an article opens the PDF in a new tab." data-bs="Tap na članak otvara PDF u novom tabu.">
+                    Tapping an article opens the PDF in a new tab.
                 </p>
             </div>
         </div>
@@ -448,40 +528,46 @@
 
     <!-- ============== VIŠE O MENI ============== -->
     <div class="headingContainer" id="oMeni">
-        <img src="assets/Icons/Person.png" alt="">
-        <h2>Više o meni</h2>
+        <img src="assets/Icons/Person.png" alt="Person Icon">
+        <h2 data-en="More About Me" data-bs="Više o meni">More About Me</h2>
     </div>
     <section class="viseOMeni appear">
         <div class="cards-container">
 
             <div class="vise-card">
                 <div class="vise-head">
-                    <img class="ico" src="assets/Icons/Education.png" alt="">
-                    <h3>Obrazovanje</h3>
+                    <img class="ico" src="assets/Icons/Education.png" alt="Education">
+                    <h3 data-en="Education" data-bs="Obrazovanje">Education</h3>
                 </div>
-                <img src="assets/MainMaterial/msts.jpeg" alt="" class="card-img">
-                <p>Osnovna škola „Travnik“ i Mješovita srednja tehnička škola „Travnik“ — smjer Računarstvo i informatika.
-                Odličan uspjeh, <u>nagrada učenika generacije srednje škole</u>. Trenutno 2. godina Softverskog inženjerstva, UNZE.</p>
+                <img src="assets/MainMaterial/msts.jpeg" alt="School" class="card-img">
+                <p data-en="Elementary School 'Travnik' & High School 'Travnik' — Computer Science. Graduated as <u>Student of the Generation</u>. Currently in 2nd year of Software Engineering at UNZE."
+                   data-bs="Osnovna škola „Travnik“ i Mješovita srednja tehnička škola „Travnik“ — smjer Računarstvo i informatika. Odličan uspjeh, <u>nagrada učenika generacije srednje škole</u>. Trenutno 2. godina Softverskog inženjerstva, UNZE.">
+                    Elementary School "Travnik" & High School "Travnik" — Computer Science. Graduated as <u>Student of the Generation</u>. Currently in 2nd year of Software Engineering at UNZE.
+                </p>
             </div>
 
             <div class="vise-card">
                 <div class="vise-head">
-                    <img class="ico" src="assets/Icons/Target.png" alt="">
-                    <h3>Sport</h3>
+                    <img class="ico" src="assets/Icons/Target.png" alt="Sport">
+                    <h3 data-en="Sports" data-bs="Sport">Sports</h3>
                 </div>
-                <img src="assets/MainMaterial/Moja2.jpg" alt="" class="card-img">
-                <p>Šest godina streljaštva u olimpijskoj disciplini (vazdušna puška 10 m).
-                <u>Prvak Federacije BiH u kategoriji seniora i nosilac rekorda.</u></p>
+                <img src="assets/MainMaterial/Moja2.jpg" alt="Sport" class="card-img">
+                <p data-en="Six years of Olympic 10m air rifle shooting. <u>Senior Champion of Federation of BiH and state record holder.</u>"
+                   data-bs="Šest godina streljaštva u olimpijskoj disciplini (vazdušna puška 10 m). <u>Prvak Federacije BiH u kategoriji seniora i nosilac rekorda.</u>">
+                    Six years of Olympic 10m air rifle shooting. <u>Senior Champion of Federation of BiH and state record holder.</u>
+                </p>
             </div>
 
             <div class="vise-card">
                 <div class="vise-head">
-                    <img class="ico" src="assets/Icons/Muscle.png" alt="">
-                    <h3>Motivacija</h3>
+                    <img class="ico" src="assets/Icons/Muscle.png" alt="Motivation">
+                    <h3 data-en="Motivation" data-bs="Motivacija">Motivation</h3>
                 </div>
-                <img src="assets/MainMaterial/bookshelf.jpeg" alt="" class="card-img">
-                <p>Kontinuirano učenje novih tehnologija, fizička disciplina i angažman u zajednici
-                (redovni dobrovoljni davalac krvi).</p>
+                <img src="assets/MainMaterial/bookshelf.jpeg" alt="Bookshelf" class="card-img">
+                <p data-en="Continuous tech learning, physical discipline, and active community engagement (regular voluntary blood donor)."
+                   data-bs="Kontinuirano učenje novih tehnologija, fizička disciplina i angažman u zajednici (redovni dobrovoljni davalac krvi).">
+                    Continuous tech learning, physical discipline, and active community engagement (regular voluntary blood donor).
+                </p>
             </div>
 
         </div>
@@ -498,18 +584,18 @@
                 <img src="assets/Icons/githab.png" alt="GitHub">
                 <span>GitHub</span>
             </a>
-            <a href="/cdn-cgi/l/email-protection#5d0e3c30382f733632313c2e382b343e736f691d2e342738733f3c" class="footer-link email-link">
+            <a href="mailto:samerkolasevic.dev@gmail.com" class="footer-link email-link">
                 <img src="assets/Icons/Gmail.png" alt="Email">
-                <span><span class="__cf_email__" data-cfemail="94c7f5f9f1e6bafffbf8f5e7f1e2fdf7baa6a0d4e7fdeef1baf6f5">[email&#160;protected]</span></span>
+                <span>samerkolasevic.dev@gmail.com</span>
             </a>
             <a href="assets/Documents/SamerKolasevicCV.pdf" class="footer-link" download>
                 <img src="assets/Icons/Person.png" alt="CV">
                 <span>Europass CV</span>
             </a>
         </div>
-        <p class="copyright">© 2026 Samer Kolasević · <a href="https://www.samer.kolasevic.com/" style="color:#00EBB9; text-decoration:none;">samer.kolasevic.com</a> · Sva prava pridržana.</p>
+        <p class="copyright">© 2026 Samer Kolasević · <a href="https://www.samer.kolasevic.com/" style="color:#00EBB9; text-decoration:none;">samer.kolasevic.com</a> · <span data-en="All rights reserved." data-bs="Sva prava pridržana.">All rights reserved.</span></p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0561dca7970d93d',t:'MTc4MDM5OTcyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a059d44cca5c684a',t:'MTc4MDQzODY1OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    <script src="script.js"></script>
+</body>
 </html>
