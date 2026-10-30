@@ -1,7 +1,7 @@
-# MyCV
 
-<img src="assets/MainMaterial/headImage.jpg" width="200" >
-
+<p align="center">
+<img src="assets/MainMaterial/headImage.jpg" width="400">
+</p>
 Personal portfolio and CV of Samer Kolasević: a fast, static, bilingual (EN / BS) site built with plain HTML, CSS and JavaScript. No frameworks, no build step.
 
 Live at **https://samer.kolasevic.com**
