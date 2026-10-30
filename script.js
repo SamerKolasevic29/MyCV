@@ -91,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (!targetId || targetId === '#') return;
+            if (targetId === '#') { e.preventDefault(); return; } // placeholder linkovi ne skaču na vrh
+            if (!targetId) return;
             const target = document.querySelector(targetId);
             if (!target) return;
 
@@ -112,14 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 let current = '';
                 sections.forEach(section => {
                     if (window.scrollY >= section.offsetTop - 160) {
-                        current = section.getAttribute('id');
+                        current = section.dataset.nav || section.getAttribute('id');
                     }
                 });
 
                 navItems.forEach(a => {
                     a.classList.remove('active');
-                    const href = a.getAttribute('href') || '';
-                    if (current && href.includes(current)) a.classList.add('active');
+                    if (current && a.getAttribute('href') === '#' + current) a.classList.add('active');
                 });
                 isScrolling = false;
             });
@@ -129,13 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ----------------------------------------
-       4. PROJEKTI — GLAVNI SLIDER
+       4. PROJEKTI — GLAVNI SLIDERI (Featured + Other)
+       Svaka [data-slider-group] ima svoj track i svoju dugmad.
     ---------------------------------------- */
-    const track = document.getElementById('sliderTrack');
-    if (track) {
-        const slides    = Array.from(track.children);
-        const nextBtn   = document.getElementById('nextBtn');
-        const prevBtn   = document.getElementById('prevBtn');
+    document.querySelectorAll('[data-slider-group]').forEach(group => {
+        const track = group.querySelector('.slider-track');
+        if (!track) return;
+
+        const slides  = Array.from(track.children);
+        const nextBtn = group.querySelector('.next-btn');
+        const prevBtn = group.querySelector('.prev-btn');
         let currentIndex = 0;
 
         const updateSlider = () => {
@@ -168,18 +171,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        // Keyboard strelice
+        // Keyboard strelice — reaguje samo slider koji je na sredini ekrana
         document.addEventListener('keydown', (e) => {
             const rect = track.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
-            if (!inView) return;
+            const mid  = window.innerHeight / 2;
+            if (!(rect.top < mid && rect.bottom > mid)) return;
             if (e.key === 'ArrowRight' && currentIndex < slides.length - 1) {
                 currentIndex++; updateSlider();
             } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
                 currentIndex--; updateSlider();
             }
         });
-    }
+    });
 
 
     /* ----------------------------------------

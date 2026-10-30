@@ -354,6 +354,9 @@ section {
 .linux         { border-color: rgb(248, 255, 146); background-color: rgba(122, 131, 0, 0.55);   color: rgb(250, 255, 185); }
 .py            { border-color: rgb(251, 255, 202); background-color: rgba(195, 185, 0, 0.55);   color: rgb(252, 255, 220); }
 .theory        { border-color: rgb(189, 189, 189); background-color: rgba(69, 69, 69, 0.6);     color: rgb(220, 220, 220); }
+.bash          { border-color: rgb(163, 230, 53);  background-color: rgba(20, 83, 45, 0.65);    color: rgb(190, 242, 100); }
+.spring        { border-color: rgb(109, 179, 63);  background-color: rgba(45, 80, 22, 0.6);     color: rgb(168, 218, 130); }
+.java          { border-color: rgb(110, 165, 255); background-color: rgba(10, 60, 150, 0.55);   color: rgb(170, 200, 255); }
 
 /* =========================================
    6. PROJEKTI — SLIDER
@@ -368,6 +371,9 @@ section.projekti {
     padding-right: 0;
 }
 
+section.projekti { padding-top: 0; }          
+
+[data-slider-group] .headingContainer { margin-bottom: 6px; }   
 .swipe-hint {
     display: none;
     text-align: center;
@@ -499,6 +505,9 @@ section.projekti {
 .pro-links a:hover { transform: translateY(-3px) scale(1.1); }
 .pro-links a:hover img { opacity: 1; }
 
+/* placeholder linkovi (href="#") dok se ne dodaju prave adrese */
+.pro-links a.link-todo { opacity: 0.45; cursor: default; }
+
 .ImageContainer {
     flex: 1 1 320px;
     width: 320px;
@@ -610,8 +619,9 @@ section.projekti {
 }
 .homelab-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 60px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
     margin-bottom: 24px;
 }
 .homelab-box {
@@ -867,6 +877,7 @@ section.projekti {
 }
 
 @media (max-width: 768px) {
+    .homelab-grid { grid-template-columns: 1fr; }
     body { padding-top: calc(var(--nav-h) + 12px); }
     .mobile-only-collapse .expand-btn { display: inline-flex; }
     .mobile-only-collapse .stack-header { cursor: pointer; }
