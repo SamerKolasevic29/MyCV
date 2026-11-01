@@ -1023,7 +1023,11 @@ a:focus:not(:focus-visible) { outline: none; }
         position: fixed; z-index: 2001;
         inset: 0; margin: auto;
         width: min(92vw, 520px); height: fit-content;
-        max-height: 86vh; overflow-y: auto;
+        max-height: 86vh; overflow-y: auto; overflow-x: hidden;
+        /* kolona BEZ prelamanja: wrap + max-height je pravio drugu kolonu desno (vodoravni scroll) */
+        flex-direction: column !important; flex-wrap: nowrap !important;
+        box-sizing: border-box;
+        -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
         opacity: 1 !important; transform: none !important;
         background-color: rgba(16, 20, 19, 0.98);
         border-color: var(--border-strong);
@@ -1033,11 +1037,13 @@ a:focus:not(:focus-visible) { outline: none; }
     .sheet-open .sheet-close {
         display: flex; align-items: center; justify-content: center;
         position: sticky; top: 0; align-self: flex-end; z-index: 3;
-        width: 32px; height: 32px; margin: -6px -2px -50px 0;  /* -50 = visina + gap, da ne gura sadržaj */
+        width: 32px; height: 32px; margin: -6px 0 -50px 0;  /* -50 = visina + gap, da ne gura sadržaj */
         background: rgba(255, 255, 255, 0.08);
         border: 1px solid var(--border-strong); border-radius: 50%;
         color: var(--text); font-size: 14px; line-height: 1; cursor: pointer;
     }
+    .sheet-open .TextContainer,
+    .sheet-open .ImageContainer { flex: 0 0 auto; width: 100%; min-width: 0; }
     .sheet-open .TextContainer h3 { padding-right: 38px; margin-bottom: 10px; }
 
     /* manji badgevi u overlayu da sve stane na telefon */
