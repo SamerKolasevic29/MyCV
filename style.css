@@ -946,3 +946,112 @@ video {
         margin: 0 auto;
     }
 }
+
+/* =========================================
+   11. MOBILE — PROJEKTI KAO REDOVI + OVERLAY
+   (redove i X dugme generiše script.js; na desktopu su skriveni)
+   ========================================= */
+
+/* Skloni plavi flash pri tapu (svuda) */
+* { -webkit-tap-highlight-color: transparent; }
+button, a, summary { touch-action: manipulation; }
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) { outline: none; }
+
+.project-rows,
+.sheet-close,
+.sheet-backdrop { display: none; }
+
+@media (max-width: 768px) {
+    /* slider kontrole više ne trebaju */
+    .slider-controls,
+    .swipe-hint { display: none !important; }
+
+    /* track više nije slideshow nego običan blok */
+    .slider-track-container { overflow: visible; }
+    .slider-track { display: block; transform: none !important; transition: none; }
+    .slider-track .ProjectContainer { display: none; }
+
+    /* ---- REDOVI ---- */
+    .project-rows {
+        display: flex; flex-direction: column; gap: 10px;
+        margin: 4px 0 0;
+    }
+    .project-row {
+        display: flex; flex-direction: column; gap: 8px;
+        width: 100%; text-align: left;
+        padding: 12px 14px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: inherit; font-family: inherit;
+        cursor: pointer;
+        transition: transform .15s ease, border-color .15s ease;
+    }
+    .project-row:active { transform: scale(0.985); border-color: var(--border-strong); }
+
+    .project-row-title {
+        display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+        color: var(--accent); font-size: 15px; font-weight: 700;
+    }
+    .project-row-title .tag-status { font-size: 9px; padding: 1px 6px; }
+
+    /* badgevi u jednom redu; višak se sakriva, a script.js dodaje "…" */
+    .project-row-badges {
+        display: flex; flex-wrap: nowrap; gap: 6px; overflow: hidden;
+    }
+    .project-row-badges .tech-badge {
+        flex: 0 0 auto; white-space: nowrap;
+        font-size: 11px; padding: 2px 8px; border-width: 1px;
+    }
+    .project-row-badges .badge-more {
+        flex: 0 0 auto; align-self: center;
+        color: var(--text-dim); font-weight: 700; line-height: 1;
+    }
+
+    /* ---- OVERLAY ---- */
+    .sheet-backdrop {
+        position: fixed; inset: 0; z-index: 2000;
+        background: rgba(0, 0, 0, 0.55);
+        -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    .sheet-backdrop.show { display: block; }
+    body.sheet-lock { overflow: hidden; }
+
+    .slider-track .ProjectContainer.sheet-open {
+        display: flex;
+        position: fixed; z-index: 2001;
+        inset: 0; margin: auto;
+        width: min(92vw, 520px); height: fit-content;
+        max-height: 86vh; overflow-y: auto;
+        opacity: 1 !important; transform: none !important;
+        background-color: rgba(16, 20, 19, 0.98);
+        border-color: var(--border-strong);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .sheet-open .sheet-close {
+        display: flex; align-items: center; justify-content: center;
+        position: sticky; top: 0; align-self: flex-end; z-index: 3;
+        width: 32px; height: 32px; margin: -6px -2px -50px 0;  /* -50 = visina + gap, da ne gura sadržaj */
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border-strong); border-radius: 50%;
+        color: var(--text); font-size: 14px; line-height: 1; cursor: pointer;
+    }
+    .sheet-open .TextContainer h3 { padding-right: 38px; margin-bottom: 10px; }
+
+    /* manji badgevi u overlayu da sve stane na telefon */
+    .sheet-open .badges { gap: 6px; }
+    .sheet-open .tech-badge { font-size: 11px; padding: 2px 8px; border-width: 1px; }
+    .sheet-open .tech-naslov { margin-top: 8px; }
+    .sheet-open .pro-links { margin-top: 10px; }
+    .sheet-open .mini-slider-container.portrait .m-slide { min-height: 240px; }
+    .sheet-open .mini-slider-container.portrait .m-slide img,
+    .sheet-open .mini-slider-container.portrait .m-slide video { max-height: 240px; }
+}
+
+/* razdvojeni "double" slajd (telefon): izvorni stack se skriva, slike su zasebni slajdovi */
+.m-slide.is-split-source { display: none !important; }
+.m-slide.split-part { justify-content: center; }
+.m-slide.split-part img,
+.m-slide.split-part video { max-width: 100%; }

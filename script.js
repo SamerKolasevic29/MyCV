@@ -186,32 +186,211 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ----------------------------------------
-       5. MINI SLIDERI (Za TiltControl, SeharaCloud, Grafiku)
+       4b. MOBILE — projekti kao redovi + overlay kartica
+       Na telefonu (<=768px) CSS sakriva slider i prikazuje redove
+       (ime + badgevi). Klik na red otvara istu karticu kao overlay.
     ---------------------------------------- */
+    const isPhone = () => window.innerWidth <= 768;
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'sheet-backdrop';
+    document.body.appendChild(backdrop);
+
+    let openCard = null;
+
+    const closeSheet = () => {
+        if (!openCard) return;
+        openCard.classList.remove('sheet-open');
+        backdrop.classList.remove('show');
+        document.body.classList.remove('sheet-lock');
+        openCard = null;
+    };
+
+    const openSheet = (card) => {
+        closeSheet();
+        openCard = card;
+        card.classList.add('sheet-open');
+        card.scrollTop = 0;
+        backdrop.classList.add('show');
+        document.body.classList.add('sheet-lock');
+    };
+
+    backdrop.addEventListener('click', closeSheet);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
+
+    document.querySelectorAll('[data-slider-group]').forEach(group => {
+        const section = group.querySelector('section.projekti');
+        if (!section) return;
+
+        const rows = document.createElement('div');
+        rows.className = 'project-rows';
+        section.before(rows);
+
+        group.querySelectorAll('.slider-track > .ProjectContainer').forEach(card => {
+            // X dugme (vidljivo samo kad je kartica otvorena)
+            const x = document.createElement('button');
+            x.type = 'button';
+            x.className = 'sheet-close';
+            x.setAttribute('aria-label', 'Close');
+            x.textContent = '✕';
+            x.addEventListener('click', closeSheet);
+            card.prepend(x);
+
+            // red: naslov + badgevi
+            const row = document.createElement('button');
+            row.type = 'button';
+            row.className = 'project-row';
+
+            const title = document.createElement('div');
+            title.className = 'project-row-title';
+            const h3 = card.querySelector('h3');
+            if (h3) title.innerHTML = h3.innerHTML;
+
+            const badges = document.createElement('div');
+            badges.className = 'project-row-badges';
+            const src = card.querySelector('.badges');
+            if (src) badges.innerHTML = src.innerHTML;
+
+            row.append(title, badges);
+            row.addEventListener('click', () => openSheet(card));
+            rows.appendChild(row);
+        });
+    });
+
+    // Badgevi u jednom redu; ono što ne stane se sakrije i dodaje se "…"
+    const fitRowBadges = () => {
+        if (!isPhone()) return;
+        document.querySelectorAll('.project-row-badges').forEach(wrap => {
+            wrap.querySelectorAll('.badge-more').forEach(m => m.remove());
+            const items = Array.from(wrap.querySelectorAll('.tech-badge'));
+            items.forEach(b => { b.style.display = ''; });
+            if (!items.length) return;
+
+            const gap   = parseFloat(getComputedStyle(wrap).columnGap) || 6;
+            const avail = wrap.clientWidth;
+            const total = items.reduce((s, b) => s + b.offsetWidth, 0) + gap * (items.length - 1);
+            if (total <= avail) return;
+
+            const more = document.createElement('span');
+            more.className = 'badge-more';
+            more.textContent = '…';
+            wrap.appendChild(more);
+            const moreW = more.offsetWidth + gap;
+
+            let used = 0, keep = 0;
+            for (const b of items) {
+                const w = b.offsetWidth + (keep ? gap : 0);
+                if (keep >= 1 && used + w + moreW > avail) break;
+                used += w; keep++;
+            }
+            items.forEach((b, i) => { if (i >= keep) b.style.display = 'none'; });
+        });
+    };
+
+    fitRowBadges();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitRowBadges);
+    window.addEventListener('load', fitRowBadges);
+
+    let rowResizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(rowResizeTimer);
+        rowResizeTimer = setTimeout(() => {
+            if (!isPhone()) closeSheet();
+            fitRowBadges();
+        }, 150);
+    });
+
+
+    /* ----------------------------------------
+       5. MINI SLIDERI (Za TiltControl, SeharaCloud, Grafiku)
+       Slajd s dvije slike (.m-slide.double) se na telefonu (<=768px)
+       razdvaja u dva zasebna slajda (lijevo/desno), a na desktopu
+       ostaje originalni stack.
+    ---------------------------------------- */
+    const miniSyncers = [];
+
     document.querySelectorAll('.mini-slider-container').forEach(slider => {
-        const mSlides = slider.querySelectorAll('.m-slide');
-        const mPrev   = slider.querySelector('.m-prev');
-        const mNext   = slider.querySelector('.m-next');
-        const mDots   = slider.querySelector('.m-dots');
+        const mPrev = slider.querySelector('.m-prev');
+        const mNext = slider.querySelector('.m-next');
+        const mDots = slider.querySelector('.m-dots');
         let current = 0;
 
-        if (!mSlides.length || !mPrev || !mNext) return;
+        if (!mPrev || !mNext) return;
 
-        if (mDots && mDots.children.length === 0) {
-            mSlides.forEach((_, i) => {
+        const visibleSlides = () =>
+            Array.from(slider.querySelectorAll('.m-slide')).filter(s => !s.classList.contains('is-split-source'));
+
+        // --- razdvoji / spoji "double" slajdove (pomjera iste elemente, bez kloniranja) ---
+        const splitDoubles = () => {
+            slider.querySelectorAll('.m-slide.double:not(.is-split-source)').forEach(src => {
+                const media = Array.from(src.children).filter(c => /^(IMG|VIDEO)$/.test(c.tagName));
+                if (media.length < 2) return;
+                const parts = media.map(m => {
+                    const part = document.createElement('div');
+                    part.className = 'm-slide split-part';
+                    part.dataset.splitOf = '1';
+                    part.appendChild(m);
+                    return part;
+                });
+                src.after(...parts);
+                src.classList.add('is-split-source');
+                src.classList.remove('active');
+                parts.forEach(p => p.querySelectorAll('video').forEach(v => v.play && v.play().catch(() => {})));
+            });
+        };
+
+        const mergeDoubles = () => {
+            slider.querySelectorAll('.m-slide.is-split-source').forEach(src => {
+                let next = src.nextElementSibling;
+                while (next && next.classList.contains('split-part')) {
+                    const part = next;
+                    next = part.nextElementSibling;
+                    Array.from(part.children).forEach(m => {
+                        src.appendChild(m);
+                        if (m.tagName === 'VIDEO' && m.play) m.play().catch(() => {});
+                    });
+                    part.remove();
+                }
+                src.classList.remove('is-split-source');
+            });
+        };
+
+        const buildDots = () => {
+            if (!mDots) return;
+            mDots.innerHTML = '';
+            visibleSlides().forEach(() => {
                 const d = document.createElement('span');
-                d.className = 'dot' + (i === 0 ? ' active' : '');
+                d.className = 'dot';
                 mDots.appendChild(d);
             });
-        }
-        const dots = mDots ? mDots.querySelectorAll('.dot') : [];
+        };
+
+        const render = () => {
+            const slides = visibleSlides();
+            if (!slides.length) return;
+            current = Math.min(Math.max(current, 0), slides.length - 1);
+            slider.querySelectorAll('.m-slide').forEach(s => s.classList.remove('active'));
+            slides[current].classList.add('active');
+            if (mDots) Array.from(mDots.children).forEach((d, i) => d.classList.toggle('active', i === current));
+        };
 
         const show = (idx) => {
-            mSlides[current].classList.remove('active');
-            current = (idx + mSlides.length) % mSlides.length;
-            mSlides[current].classList.add('active');
-            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+            const n = visibleSlides().length;
+            if (!n) return;
+            current = (idx + n) % n;
+            render();
         };
+
+        const sync = () => {
+            const wasSplit = !!slider.querySelector('.is-split-source');
+            if (isPhone() && !wasSplit) { splitDoubles(); buildDots(); render(); }
+            else if (!isPhone() && wasSplit) { mergeDoubles(); current = 0; buildDots(); render(); }
+        };
+
+        buildDots();
+        sync();
+        render();
+        miniSyncers.push(sync);
 
         mNext.addEventListener('click', () => show(current + 1));
         mPrev.addEventListener('click', () => show(current - 1));
@@ -227,6 +406,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 else show(current - 1);
             }
         }, { passive: true });
+    });
+
+    let miniResizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(miniResizeTimer);
+        miniResizeTimer = setTimeout(() => miniSyncers.forEach(fn => fn()), 150);
     });
 
 
@@ -292,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!panel.dataset.userToggled) setExpanded(panel, false);
             } else if (mobileOnly) {
                 if (isMobile) {
-                    if (!panel.dataset.userToggled) setExpanded(panel, true);
+                    if (!panel.dataset.userToggled) setExpanded(panel, false);   // default: zatvoreno na telefonu
                 } else {
                     panel.classList.remove('is-collapsed');
                     const body = panel.querySelector('.stack-body');
