@@ -1,0 +1,5 @@
+
+[
+  {"slug":"slug","lang":"bs","file":"ime.markdowna.bs.md","date":"2026-11-01","tag":"Članak","title":"Naslov","desc":"kratki opis"."},
+  {"slug":"tmv-intro","lang":"en","file":"tmv-intro.en.md","date":"2026-11-01","tag":"Article","title":"TMV — Timer Move in a nutshell","desc":"A short look at TMV, a minimal move utility written in Bash."}
+]

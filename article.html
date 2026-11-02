@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Article | Samer Kolasević</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="article-body">
+
+    <div class="article-topbar">
+        <div class="article-topbar-inner">
+            <a class="back" href="index.html#clanci" data-en="← Portfolio" data-bs="← Portfolio">← Portfolio</a>
+            <button class="lang-btn" id="langToggle" aria-label="Toggle language">
+                <span class="lang-icon">🌐</span>
+                <span class="lang-text" id="langText">BS</span>
+            </button>
+        </div>
+    </div>
+
+    <main class="article-page">
+        <article class="md-body" id="mdBody"></article>
+    </main>
+
+    <script src="assets/js/marked.min.js"></script>
+    <script src="articles-core.js"></script>
+    <script src="article.js"></script>
+</body>
+</html>

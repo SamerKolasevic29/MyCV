@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerHTML = translation;
             }
         });
+
+        document.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
     };
 
     applyLanguage(currentLang);
@@ -320,6 +322,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const visibleSlides = () =>
             Array.from(slider.querySelectorAll('.m-slide')).filter(s => !s.classList.contains('is-split-source'));
 
+        const safePlay = (v) => { try { const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} };
+
         // --- razdvoji / spoji "double" slajdove (pomjera iste elemente, bez kloniranja) ---
         const splitDoubles = () => {
             slider.querySelectorAll('.m-slide.double:not(.is-split-source)').forEach(src => {
@@ -335,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 src.after(...parts);
                 src.classList.add('is-split-source');
                 src.classList.remove('active');
-                parts.forEach(p => p.querySelectorAll('video').forEach(v => v.play && v.play().catch(() => {})));
+                parts.forEach(p => p.querySelectorAll('video').forEach(safePlay));
             });
         };
 
@@ -347,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     next = part.nextElementSibling;
                     Array.from(part.children).forEach(m => {
                         src.appendChild(m);
-                        if (m.tagName === 'VIDEO' && m.play) m.play().catch(() => {});
+                        if (m.tagName === 'VIDEO') safePlay(m);
                     });
                     part.remove();
                 }
@@ -416,34 +420,161 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ----------------------------------------
-       6. ČLANCI — PDF preglednik (split-pane)
+       6. ČLANCI — lista + canvas (PDF iframe ili Markdown)
+       - PDF članci su statični u HTML-u (data-pdf)
+       - Markdown članci se učitavaju iz assets/Articles/articles.json
+         (generiše ga scripts/build-articles.sh iz front matter-a)
+       Desktop: otvara se u canvasu desno. Telefon: novi tab.
     ---------------------------------------- */
-    const articleLinks = document.querySelectorAll('.article-link');
-    const pdfViewer    = document.getElementById('pdfViewer');
-    const viewerPath   = document.getElementById('viewerPath');
-    const openExt      = document.getElementById('viewerOpenExt');
+    const articleList = document.querySelector('.article-list');
+    const pdfViewer   = document.getElementById('pdfViewer');
+    const mdViewer    = document.getElementById('mdViewer');
+    const mdBody      = document.getElementById('mdBody');
+    const viewerPath  = document.getElementById('viewerPath');
+    const openExt     = document.getElementById('viewerOpenExt');
 
     const isMobileViewer = () => window.innerWidth <= 960;
+    const LIST_LIMIT = 5;                     // koliko članaka vidiš prije "Show all" (telefon)
 
-    articleLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            const pdfUrl = this.getAttribute('data-pdf');
-            if (!pdfUrl) return;
-            e.preventDefault();
+    let mdEntries = [];                       // grupisani .md članci (po slug-u)
+    let currentMd = null;                     // slug trenutno otvorenog u canvasu
+    let loadToken = 0;
+    let listExpanded = false;
 
-            if (isMobileViewer()) {
-                window.open(pdfUrl, '_blank', 'noopener');
-                return;
+    const setActive = (link) => {
+        articleList.querySelectorAll('.article-link').forEach(l => l.classList.remove('active-article'));
+        if (link) link.classList.add('active-article');
+    };
+
+    const showPdf = (url) => {
+        currentMd = null;
+        if (mdViewer) mdViewer.hidden = true;
+        if (pdfViewer) { pdfViewer.hidden = false; pdfViewer.src = url; }
+        if (viewerPath) viewerPath.textContent = url;
+        if (openExt)    openExt.setAttribute('href', url);
+    };
+
+    const showMd = async (entry) => {
+        if (!window.ArticlesCore || !mdViewer || !mdBody) return;
+        const item  = ArticlesCore.pick(entry, currentLang);
+        const token = ++loadToken;
+        currentMd = entry.slug;
+
+        if (pdfViewer) pdfViewer.hidden = true;
+        mdViewer.hidden = false;
+        mdBody.innerHTML = '<p class="md-loading">…</p>';
+        if (viewerPath) viewerPath.textContent = ArticlesCore.BASE + item.file;
+        if (openExt)    openExt.setAttribute('href', 'article.html?a=' + encodeURIComponent(entry.slug));
+
+        try {
+            await ArticlesCore.render(mdBody, item);
+            if (token !== loadToken) return;          // u međuvremenu kliknut drugi članak
+            mdBody.prepend(ArticlesCore.metaEl(item));
+            mdViewer.scrollTop = 0;
+        } catch (err) {
+            if (token !== loadToken) return;
+            mdBody.textContent = currentLang === 'en' ? 'Could not load this article.' : 'Članak nije moguće učitati.';
+        }
+    };
+
+    const updateListLimit = () => {
+        if (!articleList) return;
+        const links = Array.from(articleList.querySelectorAll('.article-link'));
+        links.forEach((l, i) => l.classList.toggle('is-extra', i >= LIST_LIMIT));
+
+        let btn = articleList.querySelector('.article-more');
+        if (links.length <= LIST_LIMIT) { if (btn) btn.remove(); return; }
+        if (!btn) {
+            btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'article-more';
+            btn.addEventListener('click', () => { listExpanded = !listExpanded; updateListLimit(); });
+        }
+        articleList.appendChild(btn);                  // uvijek na kraju liste
+        articleList.classList.toggle('is-collapsed', !listExpanded);
+        btn.textContent = listExpanded
+            ? (currentLang === 'en' ? 'Show less ▲' : 'Prikaži manje ▲')
+            : (currentLang === 'en' ? `Show all (${links.length}) ▼` : `Prikaži sve (${links.length}) ▼`);
+    };
+
+    const buildMdLinks = () => {
+        if (!articleList) return;
+        articleList.querySelectorAll('[data-md]').forEach(l => l.remove());
+
+        const frag = document.createDocumentFragment();
+        mdEntries.forEach(entry => {
+            const item = ArticlesCore.pick(entry, currentLang);
+            const a = document.createElement('a');
+            a.className = 'article-link' + (entry.slug === currentMd ? ' active-article' : '');
+            a.href = 'article.html?a=' + encodeURIComponent(entry.slug);
+            a.target = '_blank';                       // telefon: novi tab (desktop preuzima JS)
+            a.rel = 'noopener';
+            a.dataset.md = entry.slug;
+
+            const meta = document.createElement('div');
+            meta.className = 'article-meta';
+            const tag = document.createElement('span');
+            tag.className = 'article-tag';
+            tag.textContent = item.tag || 'Article';
+            meta.appendChild(tag);
+
+            const h3 = document.createElement('h3');
+            h3.className = 'article-title';
+            h3.textContent = item.title;
+
+            a.append(meta, h3);
+            if (item.desc) {
+                const p = document.createElement('p');
+                p.className = 'article-desc';
+                p.textContent = item.desc;
+                a.appendChild(p);
             }
-
-            if (pdfViewer)  pdfViewer.src = pdfUrl;
-            if (viewerPath) viewerPath.textContent = pdfUrl;
-            if (openExt)    openExt.setAttribute('href', pdfUrl);
-
-            articleLinks.forEach(l => l.classList.remove('active-article'));
-            this.classList.add('active-article');
+            frag.appendChild(a);
         });
-    });
+        articleList.prepend(frag);
+        updateListLimit();
+    };
+
+    if (articleList) {
+        // klik: PDF i Markdown (event delegation, radi i za dinamički dodane)
+        articleList.addEventListener('click', (e) => {
+            const link = e.target.closest('.article-link');
+            if (!link) return;
+
+            const pdfUrl = link.getAttribute('data-pdf');
+            const mdSlug = link.dataset.md;
+
+            if (pdfUrl) {
+                e.preventDefault();
+                if (isMobileViewer()) { window.open(pdfUrl, '_blank', 'noopener'); return; }
+                showPdf(pdfUrl);
+                setActive(link);
+            } else if (mdSlug) {
+                if (isMobileViewer()) return;          // browser otvara href u novom tabu
+                e.preventDefault();
+                const entry = mdEntries.find(x => x.slug === mdSlug);
+                if (entry) { showMd(entry); setActive(link); }
+            }
+        });
+
+        // učitaj .md članke (ako articles.json postoji)
+        if (window.ArticlesCore) {
+            ArticlesCore.loadIndex()
+                .then(entries => { mdEntries = entries; buildMdLinks(); })
+                .catch(() => { updateListLimit(); });   // nema JSON-a: ostaju samo PDF-ovi
+        } else {
+            updateListLimit();
+        }
+
+        // promjena jezika: osvježi naslove u listi i otvoreni članak
+        document.addEventListener('langchange', () => {
+            if (mdEntries.length) buildMdLinks(); else updateListLimit();
+            if (currentMd) {
+                const entry = mdEntries.find(x => x.slug === currentMd);
+                if (entry) showMd(entry);
+            }
+        });
+    }
 
 
     /* ----------------------------------------
