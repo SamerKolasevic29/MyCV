@@ -1,5 +1,5 @@
 
 [
-  {"slug":"slug","lang":"bs","file":"ime.markdowna.bs.md","date":"2026-11-01","tag":"Članak","title":"Naslov","desc":"kratki opis"."},
-  {"slug":"tmv-intro","lang":"en","file":"tmv-intro.en.md","date":"2026-11-01","tag":"Article","title":"TMV — Timer Move in a nutshell","desc":"A short look at TMV, a minimal move utility written in Bash."}
+  {"slug":"bullet-journaling","lang":"bs","file":"bullet-jorunal.bs.md","date":"2026-11-03","tag":"Članak","title":"Svakodnevnica u rokovniku","desc":"Kako sam rokovnikom unaprijedio period života"."},
+  {"slug":"bullet-journaling","lang":"en","file":"bullet-journal.en.md","date":"2026-11-03","tag":"Article","title":"Notebook in everyday life","desc":"How I changed one period of life with one notebook"}
 ]
